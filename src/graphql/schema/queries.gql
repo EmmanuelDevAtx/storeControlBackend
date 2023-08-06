@@ -1,0 +1,7 @@
+type Query {
+    showDialog(men: String): RespuestaSuccess
+}
+
+type RespuestaSuccess {
+    res: String
+}
