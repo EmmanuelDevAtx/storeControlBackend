@@ -1,0 +1,13 @@
+type Mutation {
+    createNewUser(user: CreateUserInput): CreateNewUserResult
+}
+
+union CreateNewUserResult =  CreateNewUserSuccess | InternalError | InvalidInputError
+
+input CreateUserInput{
+    name:String!
+}
+
+type CreateNewUserSuccess{
+    user: User
+}

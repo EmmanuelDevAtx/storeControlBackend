@@ -1,0 +1,16 @@
+interface Error {
+  message: String!
+}
+
+type InternalError implements Error {
+  message: String!
+}
+
+type InvalidInputError implements Error {
+  message: String!
+}
+
+type BadLoginTypeError implements Error {
+  message: String!
+}
+
