@@ -4,15 +4,8 @@ type Mutation {
 
 union CreateNewUserResult =  CreateNewUserSuccess | InternalError | InvalidInputError
 
-type User{
-    _id: ID
-    name: String
-    role: String
-}
-
 input CreateUserInput{
     name:String!
-    role:String!
 }
 
 type CreateNewUserSuccess{

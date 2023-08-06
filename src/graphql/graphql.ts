@@ -8,9 +8,14 @@
 /* tslint:disable */
 /* eslint-disable */
 
+export enum Role {
+    USER = "USER",
+    ADMIN = "ADMIN",
+    SUPER_USER = "SUPER_USER"
+}
+
 export class CreateUserInput {
     name: string;
-    role: string;
 }
 
 export interface Error {
@@ -38,13 +43,6 @@ export abstract class IMutation {
     abstract createNewUser(user?: Nullable<CreateUserInput>): Nullable<CreateNewUserResult> | Promise<Nullable<CreateNewUserResult>>;
 }
 
-export class User {
-    __typename?: 'User';
-    _id?: Nullable<string>;
-    name?: Nullable<string>;
-    role?: Nullable<string>;
-}
-
 export class CreateNewUserSuccess {
     __typename?: 'CreateNewUserSuccess';
     user?: Nullable<User>;
@@ -59,6 +57,13 @@ export abstract class IQuery {
 export class RespuestaSuccess {
     __typename?: 'RespuestaSuccess';
     res?: Nullable<string>;
+}
+
+export class User {
+    __typename?: 'User';
+    _id?: Nullable<string>;
+    name?: Nullable<string>;
+    role?: Nullable<Nullable<Role>[]>;
 }
 
 export type CreateNewUserResult = CreateNewUserSuccess | InternalError | InvalidInputError;

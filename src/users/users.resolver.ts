@@ -1,16 +1,22 @@
 import { Resolver, Query, Mutation, Args, ResolveField } from '@nestjs/graphql';
 import { UsersService } from './users.service';
-import { CreateNewUserSuccess, CreateUserInput, InternalError, InvalidInputError } from 'src/graphql/graphql';
+import { CreateNewUserSuccess, CreateUserInput, InternalError, InvalidInputError, Role } from 'src/graphql/graphql';
+import { Logger } from '@nestjs/common';
 
 @Resolver('User')
 export class UsersResolver {
-  constructor(private readonly usersService: UsersService) {}
+  protected logger: Logger;
+
+  constructor(
+    private readonly usersService: UsersService) {
+      this.logger = new Logger('OneTimeCodeResolver');
+    }
 
   @Mutation('createNewUser')
   async createNewUser(
     @Args('user') user: CreateUserInput
   ){
-    const response = await this.usersService.create(user)
+    const response = await this.usersService.create({...user, role: [Role.USER]})
 
     return  Object.assign(new CreateNewUserSuccess(),{
       user: response

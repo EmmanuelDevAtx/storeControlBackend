@@ -1,6 +1,10 @@
+export declare enum Role {
+    USER = "USER",
+    ADMIN = "ADMIN",
+    SUPER_USER = "SUPER_USER"
+}
 export declare class CreateUserInput {
     name: string;
-    role: string;
 }
 export interface Error {
     message: string;
@@ -21,12 +25,6 @@ export declare abstract class IMutation {
     __typename?: 'IMutation';
     abstract createNewUser(user?: Nullable<CreateUserInput>): Nullable<CreateNewUserResult> | Promise<Nullable<CreateNewUserResult>>;
 }
-export declare class User {
-    __typename?: 'User';
-    _id?: Nullable<string>;
-    name?: Nullable<string>;
-    role?: Nullable<string>;
-}
 export declare class CreateNewUserSuccess {
     __typename?: 'CreateNewUserSuccess';
     user?: Nullable<User>;
@@ -38,6 +36,12 @@ export declare abstract class IQuery {
 export declare class RespuestaSuccess {
     __typename?: 'RespuestaSuccess';
     res?: Nullable<string>;
+}
+export declare class User {
+    __typename?: 'User';
+    _id?: Nullable<string>;
+    name?: Nullable<string>;
+    role?: Nullable<Nullable<Role>[]>;
 }
 export type CreateNewUserResult = CreateNewUserSuccess | InternalError | InvalidInputError;
 type Nullable<T> = T | null;
