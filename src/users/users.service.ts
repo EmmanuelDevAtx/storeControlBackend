@@ -1,26 +1,20 @@
 import { Injectable } from '@nestjs/common';
-import { CreateUserInput } from './dto/create-user.input';
-import { UpdateUserInput } from './dto/update-user.input';
+import { CrudService } from 'src/core/crud.service';
+import { User } from './entities/user.entity';
+import { UsersRepository } from './users.repository';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
-export class UsersService {
-  create(createUserInput: CreateUserInput) {
-    return 'This action adds a new user';
-  }
+export class UsersService extends CrudService<User>{
 
-  findAll() {
-    return `This action returns all users`;
+  constructor(
+    readonly repository: UsersRepository,
+    readonly configService: ConfigService
+  ){
+    super( repository, 'UserService', configService);
   }
+  
+  async createNewUser(){
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
-  }
-
-  update(id: number, updateUserInput: UpdateUserInput) {
-    return `This action updates a #${id} user`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} user`;
   }
 }

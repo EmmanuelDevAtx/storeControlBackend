@@ -32,8 +32,28 @@ bld/
 [Ll]og/
 [Ll]ogs/
 
+
+# dependencies
+/node_modules
+
+.env
+
+# testing
+/coverage
+
+# production
+/dist
+
+# misc
+.DS_Store
+
+# local env files
+.env*.local
+w
 # Visual Studio 2015/2017 cache/options directory
 .vs/
+
+.env*.local
 # Uncomment if you have tasks that create the project's static files in wwwroot
 #wwwroot/
 
