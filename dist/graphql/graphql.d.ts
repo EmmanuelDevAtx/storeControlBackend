@@ -48,10 +48,15 @@ export declare class Pagination {
 export declare abstract class IQuery {
     __typename?: 'IQuery';
     abstract showUsers(filter?: Nullable<FilterUsers>, filterUser?: Nullable<FilterShowUser>): Nullable<ShowUsersResult> | Promise<Nullable<ShowUsersResult>>;
+    abstract showUserById(id: string): Nullable<ShowUserByIdResult> | Promise<Nullable<ShowUserByIdResult>>;
 }
 export declare class ShowUsersSuccess {
     __typename?: 'ShowUsersSuccess';
     showUsersConnection?: Nullable<ShowUsersConnection>;
+}
+export declare class ShowUserByIdSuccess {
+    __typename?: 'ShowUserByIdSuccess';
+    user?: Nullable<User>;
 }
 export declare class User {
     __typename?: 'User';
@@ -67,5 +72,6 @@ export declare class ShowUsersConnection {
 }
 export type CreateNewUserResult = CreateNewUserSuccess | InternalError | InvalidInputError;
 export type ShowUsersResult = ShowUsersSuccess | InvalidInputError | InternalError;
+export type ShowUserByIdResult = ShowUserByIdSuccess | InvalidInputError | InternalError;
 type Nullable<T> = T | null;
 export {};

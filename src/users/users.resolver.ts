@@ -1,6 +1,6 @@
 import { Resolver, Query, Mutation, Args, ResolveField } from '@nestjs/graphql';
 import { UsersService } from './users.service';
-import { CreateNewUserSuccess, CreateUserInput, FilterShowUser, InternalError, InvalidInputError, Role, ShowUsersSuccess } from 'src/graphql/graphql';
+import { CreateNewUserSuccess, CreateUserInput, FilterShowUser, InternalError, InvalidInputError, Role, ShowUserByIdSuccess, ShowUsersSuccess } from 'src/graphql/graphql';
 import { Logger } from '@nestjs/common';
 
 @Resolver('User')
@@ -44,6 +44,16 @@ export class UsersResolver {
     })
   }
 
+  @Query('showUserById')
+  async showUserById(
+    @Args('id') id:string  
+    ){  
+    const user = await this.usersService.findById(id);
+    return Object.assign(new ShowUserByIdSuccess, { 
+      user
+    })
+  }
+
 }
 
 @Resolver('CreateNewUserResult')
@@ -69,6 +79,26 @@ export class ShowUsersResultResolver{
   __resolveType(obj){
     if(obj instanceof ShowUsersSuccess){
       return 'ShowUsersSuccess'
+    }
+
+    if(obj instanceof InvalidInputError){
+      return 'InvalidInputError'
+    }
+
+    if(obj instanceof InternalError){
+      return 'InternalError'
+    }
+
+    return null;
+  }
+}
+
+@Resolver('ShowUserByIdResult')
+export class ShowUserByIdResultResolver{
+  @ResolveField()
+  __resolveType(obj){
+    if(obj instanceof ShowUserByIdSuccess){
+      return 'ShowUserByIdSuccess'
     }
 
     if(obj instanceof InvalidInputError){

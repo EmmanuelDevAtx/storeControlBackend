@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { CreateNewUserResultResolver, ShowUsersResultResolver, UsersResolver } from './users.resolver';
+import { CreateNewUserResultResolver, ShowUserByIdResultResolver, ShowUsersResultResolver, UsersResolver } from './users.resolver';
 import { MongooseModule } from '@nestjs/mongoose';
 import { User, UsersSchema } from './entities/user.entity';
 import { UsersRepository } from './users.repository';
@@ -18,7 +18,8 @@ import { UsersRepository } from './users.repository';
     
     //Resolvers
     CreateNewUserResultResolver,
-    ShowUsersResultResolver
+    ShowUsersResultResolver,
+    ShowUserByIdResultResolver
   ],
   exports: [UsersService]
 })
