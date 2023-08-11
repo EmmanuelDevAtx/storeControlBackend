@@ -1,13 +1,25 @@
 type Mutation {
     createNewUser(user: CreateUserInput): CreateNewUserResult
+
+    createNewDiscount(input: CreateNewDiscountInput): CreateNewDiscountResult
 }
 
 union CreateNewUserResult =  CreateNewUserSuccess | InternalError | InvalidInputError
+union CreateNewDiscountResult =  CreateNewDiscountSuccess | InternalError | InvalidInputError
 
 input CreateUserInput{
     name:String!
 }
 
+input CreateNewDiscountInput{
+    description: String!
+    amount: Int!
+}
+
 type CreateNewUserSuccess{
     user: User
+}
+
+type CreateNewDiscountSuccess{
+    discount: Discount
 }

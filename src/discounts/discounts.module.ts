@@ -1,8 +1,24 @@
 import { Module } from '@nestjs/common';
 import { DiscountsService } from './discounts.service';
-import { DiscountsResolver } from './discounts.resolver';
+import { CreateNewDiscountResultResolver, DiscountsResolver } from './discounts.resolver';
+import { Mongoose } from 'mongoose';
+import { MongooseModule } from '@nestjs/mongoose';
+import { Discount, DiscountSchema } from './entities/discount.entity';
+import { DiscountRepository } from './discounts.repository';
 
 @Module({
-  providers: [DiscountsResolver, DiscountsService]
+  imports:[
+    MongooseModule.forFeature([
+      {name: Discount.name, schema: DiscountSchema}
+    ])
+  ],
+  providers: [
+    DiscountsResolver, 
+    DiscountsService,
+    DiscountRepository,
+
+    //Resolevrs
+    CreateNewDiscountResultResolver
+  ]
 })
 export class DiscountsModule {}

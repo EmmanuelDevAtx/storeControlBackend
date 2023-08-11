@@ -18,6 +18,11 @@ export class CreateUserInput {
     name: string;
 }
 
+export class CreateNewDiscountInput {
+    description: string;
+    amount: number;
+}
+
 export class FilterPagination {
     limit?: Nullable<number>;
     cursor?: Nullable<string>;
@@ -54,11 +59,18 @@ export abstract class IMutation {
     __typename?: 'IMutation';
 
     abstract createNewUser(user?: Nullable<CreateUserInput>): Nullable<CreateNewUserResult> | Promise<Nullable<CreateNewUserResult>>;
+
+    abstract createNewDiscount(input?: Nullable<CreateNewDiscountInput>): Nullable<CreateNewDiscountResult> | Promise<Nullable<CreateNewDiscountResult>>;
 }
 
 export class CreateNewUserSuccess {
     __typename?: 'CreateNewUserSuccess';
     user?: Nullable<User>;
+}
+
+export class CreateNewDiscountSuccess {
+    __typename?: 'CreateNewDiscountSuccess';
+    discount?: Nullable<Discount>;
 }
 
 export class Pagination {
@@ -93,6 +105,12 @@ export class User {
     role?: Nullable<Nullable<Role>[]>;
 }
 
+export class Discount {
+    __typename?: 'Discount';
+    description?: Nullable<string>;
+    amount?: Nullable<number>;
+}
+
 export class ShowUsersConnection {
     __typename?: 'ShowUsersConnection';
     pageInfo?: Nullable<Pagination>;
@@ -101,6 +119,7 @@ export class ShowUsersConnection {
 }
 
 export type CreateNewUserResult = CreateNewUserSuccess | InternalError | InvalidInputError;
+export type CreateNewDiscountResult = CreateNewDiscountSuccess | InternalError | InvalidInputError;
 export type ShowUsersResult = ShowUsersSuccess | InvalidInputError | InternalError;
 export type ShowUserByIdResult = ShowUserByIdSuccess | InvalidInputError | InternalError;
 type Nullable<T> = T | null;

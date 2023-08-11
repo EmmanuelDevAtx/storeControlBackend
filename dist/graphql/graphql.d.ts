@@ -6,6 +6,10 @@ export declare enum Role {
 export declare class CreateUserInput {
     name: string;
 }
+export declare class CreateNewDiscountInput {
+    description: string;
+    amount: number;
+}
 export declare class FilterPagination {
     limit?: Nullable<number>;
     cursor?: Nullable<string>;
@@ -34,10 +38,15 @@ export declare class BadLoginTypeError implements Error {
 export declare abstract class IMutation {
     __typename?: 'IMutation';
     abstract createNewUser(user?: Nullable<CreateUserInput>): Nullable<CreateNewUserResult> | Promise<Nullable<CreateNewUserResult>>;
+    abstract createNewDiscount(input?: Nullable<CreateNewDiscountInput>): Nullable<CreateNewDiscountResult> | Promise<Nullable<CreateNewDiscountResult>>;
 }
 export declare class CreateNewUserSuccess {
     __typename?: 'CreateNewUserSuccess';
     user?: Nullable<User>;
+}
+export declare class CreateNewDiscountSuccess {
+    __typename?: 'CreateNewDiscountSuccess';
+    discount?: Nullable<Discount>;
 }
 export declare class Pagination {
     __typename?: 'Pagination';
@@ -64,6 +73,11 @@ export declare class User {
     name?: Nullable<string>;
     role?: Nullable<Nullable<Role>[]>;
 }
+export declare class Discount {
+    __typename?: 'Discount';
+    description?: Nullable<string>;
+    amount?: Nullable<number>;
+}
 export declare class ShowUsersConnection {
     __typename?: 'ShowUsersConnection';
     pageInfo?: Nullable<Pagination>;
@@ -71,6 +85,7 @@ export declare class ShowUsersConnection {
     edges?: Nullable<Nullable<User>[]>;
 }
 export type CreateNewUserResult = CreateNewUserSuccess | InternalError | InvalidInputError;
+export type CreateNewDiscountResult = CreateNewDiscountSuccess | InternalError | InvalidInputError;
 export type ShowUsersResult = ShowUsersSuccess | InvalidInputError | InternalError;
 export type ShowUserByIdResult = ShowUserByIdSuccess | InvalidInputError | InternalError;
 type Nullable<T> = T | null;

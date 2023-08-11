@@ -1,34 +1,44 @@
-import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, ResolveField } from '@nestjs/graphql';
 import { DiscountsService } from './discounts.service';
-import { CreateDiscountInput } from './dto/create-discount.input';
-import { UpdateDiscountInput } from './dto/update-discount.input';
+import { CreateNewDiscountInput, CreateNewDiscountSuccess, InternalError, InvalidInputError } from 'src/graphql/graphql';
+import { Logger } from '@nestjs/common';
 
 @Resolver('Discount')
 export class DiscountsResolver {
-  constructor(private readonly discountsService: DiscountsService) {}
 
-  @Mutation('createDiscount')
-  create(@Args('createDiscountInput') createDiscountInput: CreateDiscountInput) {
-    return this.discountsService.create(createDiscountInput);
+  protected logger: Logger;
+  constructor(private readonly discountsService: DiscountsService) {
+    this.logger = new Logger('DiscountsResolver');
   }
 
-  @Query('discounts')
-  findAll() {
-    return this.discountsService.findAll();
-  }
-
-  @Query('discount')
-  findOne(@Args('id') id: number) {
-    return this.discountsService.findOne(id);
-  }
-
-  @Mutation('updateDiscount')
-  update(@Args('updateDiscountInput') updateDiscountInput: UpdateDiscountInput) {
-    return this.discountsService.update(updateDiscountInput.id, updateDiscountInput);
-  }
-
-  @Mutation('removeDiscount')
-  remove(@Args('id') id: number) {
-    return this.discountsService.remove(id);
+  @Mutation('createNewDiscount')
+  async createNewDiscount(
+    @Args('input') input: CreateNewDiscountInput
+    ) {
+    const discount = await this.discountsService.create(input);
+    return Object.assign(new CreateNewDiscountSuccess(), {
+      discount
+    })
   }
 }
+
+@Resolver('CreateNewDiscountResult')
+export class CreateNewDiscountResultResolver{
+  @ResolveField()
+  __resolveType(obj){
+    if(obj instanceof CreateNewDiscountSuccess){
+      return 'CreateNewDiscountSuccess'
+    }
+
+    if(obj instanceof InvalidInputError){
+      return 'InvalidInputError'
+    }
+
+    if(obj instanceof InternalError){
+      return 'InternalError'
+    }
+
+    return null;
+  }
+}
+
