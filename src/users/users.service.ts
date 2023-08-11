@@ -13,8 +13,4 @@ export class UsersService extends CrudService<User>{
   ){
     super( repository, 'UserService', configService);
   }
-  
-  async createNewUser(){
-
-  }
 }

@@ -1,6 +1,6 @@
 import { Resolver, Query, Mutation, Args, ResolveField } from '@nestjs/graphql';
 import { UsersService } from './users.service';
-import { CreateNewUserSuccess, CreateUserInput, InternalError, InvalidInputError, Role } from 'src/graphql/graphql';
+import { CreateNewUserSuccess, CreateUserInput, FilterShowUser, InternalError, InvalidInputError, Role, ShowUsersSuccess } from 'src/graphql/graphql';
 import { Logger } from '@nestjs/common';
 
 @Resolver('User')
@@ -23,6 +23,27 @@ export class UsersResolver {
     });
   } 
 
+  @Query('showUsers')
+  async showUsers(
+    @Args('filter') input: FilterShowUser, 
+    @Args('filterUser') filterUser: FilterShowUser
+  ){
+    const filter : any =input  
+    const query: any = filterUser;
+    const users = await this.usersService.findAll(filter, query);
+    return Object.assign(new ShowUsersSuccess(),{
+      showUsersConnection:{
+        pageInfo: {
+          startCursor:users.startCursor,
+          endCursor: users.endCursor,
+          hasNext: users.hasNext,
+        },
+        total: users.total,
+        edges: users.items
+      }
+    })
+  }
+
 }
 
 @Resolver('CreateNewUserResult')
@@ -38,6 +59,26 @@ export class CreateNewUserResultResolver {
     if (obj instanceof InvalidInputError) {
       return 'InvalidInputError';
     }
+    return null;
+  }
+}
+
+@Resolver('ShowUsersResult')
+export class ShowUsersResultResolver{
+  @ResolveField()
+  __resolveType(obj){
+    if(obj instanceof ShowUsersSuccess){
+      return 'ShowUsersSuccess'
+    }
+
+    if(obj instanceof InvalidInputError){
+      return 'InvalidInputError'
+    }
+
+    if(obj instanceof InternalError){
+      return 'InternalError'
+    }
+
     return null;
   }
 }
