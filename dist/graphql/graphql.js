@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ShowUsersConnection = exports.User = exports.ShowUserByIdSuccess = exports.ShowUsersSuccess = exports.IQuery = exports.Pagination = exports.CreateNewUserSuccess = exports.IMutation = exports.BadLoginTypeError = exports.InvalidInputError = exports.InternalError = exports.FilterUsers = exports.FilterShowUser = exports.FilterPagination = exports.CreateUserInput = exports.Role = void 0;
+exports.ShowUsersConnection = exports.Discount = exports.User = exports.ShowUserByIdSuccess = exports.ShowUsersSuccess = exports.IQuery = exports.Pagination = exports.CreateNewDiscountSuccess = exports.CreateNewUserSuccess = exports.IMutation = exports.BadLoginTypeError = exports.InvalidInputError = exports.InternalError = exports.FilterUsers = exports.FilterShowUser = exports.FilterPagination = exports.CreateNewDiscountInput = exports.CreateUserInput = exports.Role = void 0;
 var Role;
 (function (Role) {
     Role["USER"] = "USER";
@@ -10,6 +10,9 @@ var Role;
 class CreateUserInput {
 }
 exports.CreateUserInput = CreateUserInput;
+class CreateNewDiscountInput {
+}
+exports.CreateNewDiscountInput = CreateNewDiscountInput;
 class FilterPagination {
 }
 exports.FilterPagination = FilterPagination;
@@ -34,6 +37,9 @@ exports.IMutation = IMutation;
 class CreateNewUserSuccess {
 }
 exports.CreateNewUserSuccess = CreateNewUserSuccess;
+class CreateNewDiscountSuccess {
+}
+exports.CreateNewDiscountSuccess = CreateNewDiscountSuccess;
 class Pagination {
 }
 exports.Pagination = Pagination;
@@ -49,6 +55,9 @@ exports.ShowUserByIdSuccess = ShowUserByIdSuccess;
 class User {
 }
 exports.User = User;
+class Discount {
+}
+exports.Discount = Discount;
 class ShowUsersConnection {
 }
 exports.ShowUsersConnection = ShowUsersConnection;

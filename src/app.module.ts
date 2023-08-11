@@ -7,6 +7,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { UsersModule } from './users/users.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { databaseFactory } from './core/db/databaseFactory';
+import { DiscountsModule } from './discounts/discounts.module';
 
 @Module({
   imports: [
@@ -23,7 +24,8 @@ import { databaseFactory } from './core/db/databaseFactory';
       useFactory: databaseFactory,
       inject: [ConfigService],
     }),
-    UsersModule
+    UsersModule,
+    DiscountsModule
   ],
   controllers: [AppController],
   providers: [AppService],

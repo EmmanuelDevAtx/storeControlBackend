@@ -16,6 +16,7 @@ const apollo_1 = require("@nestjs/apollo");
 const users_module_1 = require("./users/users.module");
 const mongoose_1 = require("@nestjs/mongoose");
 const databaseFactory_1 = require("./core/db/databaseFactory");
+const discounts_module_1 = require("./discounts/discounts.module");
 let AppModule = exports.AppModule = class AppModule {
 };
 exports.AppModule = AppModule = __decorate([
@@ -34,7 +35,8 @@ exports.AppModule = AppModule = __decorate([
                 useFactory: databaseFactory_1.databaseFactory,
                 inject: [config_1.ConfigService],
             }),
-            users_module_1.UsersModule
+            users_module_1.UsersModule,
+            discounts_module_1.DiscountsModule
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
