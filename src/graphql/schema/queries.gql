@@ -1,7 +1,18 @@
 type Query {
-    showDialog(men: String): RespuestaSuccess
+    showUsers(filter: FilterUsers, filterUser: FilterShowUser): ShowUsersResult
 }
 
-type RespuestaSuccess {
-    res: String
+
+union ShowUsersResult = ShowUsersSuccess | InvalidInputError | InternalError
+
+type ShowUsersSuccess {
+    showUsersConnection: ShowUsersConnection
+}
+
+input FilterShowUser{
+    role: [Role]
+}
+
+input FilterUsers{
+    pagination: FilterPagination
 }

@@ -9,3 +9,9 @@ type User{
     name: String
     role: [Role]
 }
+
+type ShowUsersConnection{
+    pageInfo: Pagination
+    total: Int
+    edges: [User]
+}

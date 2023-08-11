@@ -7,7 +7,7 @@ import { ERROR_FINDING_DOCUMENT } from './errors/database-errors';
 import { Status } from './entities/status';
 import { transformInsensitiveQuery } from 'src/helper/db.helper';
 
-export const PAGE_SIZE_LIMIT = 30;
+export const PAGE_SIZE_LIMIT = 15;
 
 export abstract class CrudRepository<T> {
   protected readonly logger: Logger;
@@ -17,18 +17,16 @@ export abstract class CrudRepository<T> {
     this.model = model;
   }
 
-  async findAll(query?: FindAllQuery): Promise<PaginatedEntities<T>> {
+  async findAll(query?: FindAllQuery, findItems?:any): Promise<PaginatedEntities<T>> {
     try {
-      query = transformInsensitiveQuery(query);
-      const newQuery = query.pagination?.cursor
-        ? { ...query, _id: { $gt: query.pagination.cursor } }
-        : query;
-      if (!newQuery.status) {
-        newQuery.status = { $ne: Status.DELETED };
-      }
-      const pageSize = newQuery.pagination?.limit || PAGE_SIZE_LIMIT;
+      
+      const querieData = query.pagination?.cursor
+      ? {...findItems,  _id: { $gt: query.pagination.cursor } }
+      : findItems
+      const newQuery = query;
+      const pageSize = query.pagination?.limit || PAGE_SIZE_LIMIT;
       const results = await this.model
-        .find(newQuery)
+        .find(querieData)
         .limit(pageSize)
         .select(newQuery.fields)
         .populate(newQuery.populate)

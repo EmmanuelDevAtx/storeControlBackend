@@ -1,0 +1,10 @@
+type Pagination {
+    startCursor: String
+    endCursor: String
+    hasNext: Boolean
+}
+
+input FilterPagination{
+    limit:Int
+    cursor: String
+}

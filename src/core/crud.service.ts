@@ -29,12 +29,9 @@ export abstract class CrudService<T> {
     this.logger = new Logger(`${name}Service`);
   }
 
-  async findAll(query: FindAllQuery): Promise<PaginatedEntities<T>> {
+  async findAll(query: FindAllQuery, filter:any): Promise<PaginatedEntities<T>> {
     try {
-      if (Object.keys(query).length === 0 || !query.pagination?.limit) {
-        query.pagination = { limit: 30, cursor: query.pagination?.cursor };
-      }
-      return await this.repository.findAll(query);
+      return await this.repository.findAll(query, filter);
     } catch (e) {
       this.logger.error(e);
       throw new DatabaseException(ERROR_RETRIEVING_DOCUMENTS(this.name));
