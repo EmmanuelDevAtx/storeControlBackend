@@ -1,0 +1,24 @@
+type Discount {
+  # Example field (placeholder)
+  exampleField: Int
+}
+
+input CreateDiscountInput {
+  # Example field (placeholder)
+  exampleField: Int
+}
+
+input UpdateDiscountInput {
+  id: Int!
+}
+
+type Query {
+  discounts: [Discount]!
+  discount(id: Int!): Discount
+}
+
+type Mutation {
+  createDiscount(createDiscountInput: CreateDiscountInput!): Discount!
+  updateDiscount(updateDiscountInput: UpdateDiscountInput!): Discount!
+  removeDiscount(id: Int!): Discount
+}
