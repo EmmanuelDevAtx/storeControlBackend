@@ -72,11 +72,18 @@ export abstract class IQuery {
     __typename?: 'IQuery';
 
     abstract showUsers(filter?: Nullable<FilterUsers>, filterUser?: Nullable<FilterShowUser>): Nullable<ShowUsersResult> | Promise<Nullable<ShowUsersResult>>;
+
+    abstract showUserById(id: string): Nullable<ShowUserByIdResult> | Promise<Nullable<ShowUserByIdResult>>;
 }
 
 export class ShowUsersSuccess {
     __typename?: 'ShowUsersSuccess';
     showUsersConnection?: Nullable<ShowUsersConnection>;
+}
+
+export class ShowUserByIdSuccess {
+    __typename?: 'ShowUserByIdSuccess';
+    user?: Nullable<User>;
 }
 
 export class User {
@@ -95,4 +102,5 @@ export class ShowUsersConnection {
 
 export type CreateNewUserResult = CreateNewUserSuccess | InternalError | InvalidInputError;
 export type ShowUsersResult = ShowUsersSuccess | InvalidInputError | InternalError;
+export type ShowUserByIdResult = ShowUserByIdSuccess | InvalidInputError | InternalError;
 type Nullable<T> = T | null;

@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ShowUsersConnection = exports.User = exports.ShowUsersSuccess = exports.IQuery = exports.Pagination = exports.CreateNewUserSuccess = exports.IMutation = exports.BadLoginTypeError = exports.InvalidInputError = exports.InternalError = exports.FilterUsers = exports.FilterShowUser = exports.FilterPagination = exports.CreateUserInput = exports.Role = void 0;
+exports.ShowUsersConnection = exports.User = exports.ShowUserByIdSuccess = exports.ShowUsersSuccess = exports.IQuery = exports.Pagination = exports.CreateNewUserSuccess = exports.IMutation = exports.BadLoginTypeError = exports.InvalidInputError = exports.InternalError = exports.FilterUsers = exports.FilterShowUser = exports.FilterPagination = exports.CreateUserInput = exports.Role = void 0;
 var Role;
 (function (Role) {
     Role["USER"] = "USER";
@@ -43,6 +43,9 @@ exports.IQuery = IQuery;
 class ShowUsersSuccess {
 }
 exports.ShowUsersSuccess = ShowUsersSuccess;
+class ShowUserByIdSuccess {
+}
+exports.ShowUserByIdSuccess = ShowUserByIdSuccess;
 class User {
 }
 exports.User = User;

@@ -1,12 +1,19 @@
 type Query {
     showUsers(filter: FilterUsers, filterUser: FilterShowUser): ShowUsersResult
+
+    showUserById(id: ID!): ShowUserByIdResult
 }
 
 
 union ShowUsersResult = ShowUsersSuccess | InvalidInputError | InternalError
+union ShowUserByIdResult = ShowUserByIdSuccess | InvalidInputError | InternalError
 
 type ShowUsersSuccess {
     showUsersConnection: ShowUsersConnection
+}
+
+type ShowUserByIdSuccess {
+    user: User
 }
 
 input FilterShowUser{
