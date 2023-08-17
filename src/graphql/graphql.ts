@@ -18,7 +18,12 @@ export class CreateUserInput {
     name: string;
 }
 
+export class CreateManyDiscountsInput {
+    discounts?: Nullable<Nullable<CreateNewDiscountInput>[]>;
+}
+
 export class CreateNewDiscountInput {
+    user?: Nullable<string>;
     description: string;
     amount: number;
 }
@@ -61,6 +66,8 @@ export abstract class IMutation {
     abstract createNewUser(user?: Nullable<CreateUserInput>): Nullable<CreateNewUserResult> | Promise<Nullable<CreateNewUserResult>>;
 
     abstract createNewDiscount(input?: Nullable<CreateNewDiscountInput>): Nullable<CreateNewDiscountResult> | Promise<Nullable<CreateNewDiscountResult>>;
+
+    abstract createManyDiscounts(input?: Nullable<CreateManyDiscountsInput>): Nullable<CreateManyDiscountsResult> | Promise<Nullable<CreateManyDiscountsResult>>;
 }
 
 export class CreateNewUserSuccess {
@@ -71,6 +78,11 @@ export class CreateNewUserSuccess {
 export class CreateNewDiscountSuccess {
     __typename?: 'CreateNewDiscountSuccess';
     discount?: Nullable<Discount>;
+}
+
+export class CreateManyDiscountsSuccess {
+    __typename?: 'CreateManyDiscountsSuccess';
+    discounts?: Nullable<Nullable<Discount>[]>;
 }
 
 export class Pagination {
@@ -86,6 +98,8 @@ export abstract class IQuery {
     abstract showUsers(filter?: Nullable<FilterUsers>, filterUser?: Nullable<FilterShowUser>): Nullable<ShowUsersResult> | Promise<Nullable<ShowUsersResult>>;
 
     abstract showUserById(id: string): Nullable<ShowUserByIdResult> | Promise<Nullable<ShowUserByIdResult>>;
+
+    abstract showDicountById(id?: Nullable<string>): Nullable<ShowDicountByIdResult> | Promise<Nullable<ShowDicountByIdResult>>;
 }
 
 export class ShowUsersSuccess {
@@ -96,6 +110,11 @@ export class ShowUsersSuccess {
 export class ShowUserByIdSuccess {
     __typename?: 'ShowUserByIdSuccess';
     user?: Nullable<User>;
+}
+
+export class ShowDicountByIdSuccess {
+    __typename?: 'ShowDicountByIdSuccess';
+    discount?: Nullable<Discount>;
 }
 
 export class User {
@@ -109,6 +128,7 @@ export class Discount {
     __typename?: 'Discount';
     description?: Nullable<string>;
     amount?: Nullable<number>;
+    user?: Nullable<User>;
 }
 
 export class ShowUsersConnection {
@@ -120,6 +140,8 @@ export class ShowUsersConnection {
 
 export type CreateNewUserResult = CreateNewUserSuccess | InternalError | InvalidInputError;
 export type CreateNewDiscountResult = CreateNewDiscountSuccess | InternalError | InvalidInputError;
+export type CreateManyDiscountsResult = CreateManyDiscountsSuccess | InternalError | InvalidInputError;
 export type ShowUsersResult = ShowUsersSuccess | InvalidInputError | InternalError;
 export type ShowUserByIdResult = ShowUserByIdSuccess | InvalidInputError | InternalError;
+export type ShowDicountByIdResult = ShowDicountByIdSuccess | InvalidInputError | InternalError;
 type Nullable<T> = T | null;

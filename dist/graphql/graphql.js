@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ShowUsersConnection = exports.Discount = exports.User = exports.ShowUserByIdSuccess = exports.ShowUsersSuccess = exports.IQuery = exports.Pagination = exports.CreateNewDiscountSuccess = exports.CreateNewUserSuccess = exports.IMutation = exports.BadLoginTypeError = exports.InvalidInputError = exports.InternalError = exports.FilterUsers = exports.FilterShowUser = exports.FilterPagination = exports.CreateNewDiscountInput = exports.CreateUserInput = exports.Role = void 0;
+exports.ShowUsersConnection = exports.Discount = exports.User = exports.ShowDicountByIdSuccess = exports.ShowUserByIdSuccess = exports.ShowUsersSuccess = exports.IQuery = exports.Pagination = exports.CreateManyDiscountsSuccess = exports.CreateNewDiscountSuccess = exports.CreateNewUserSuccess = exports.IMutation = exports.BadLoginTypeError = exports.InvalidInputError = exports.InternalError = exports.FilterUsers = exports.FilterShowUser = exports.FilterPagination = exports.CreateNewDiscountInput = exports.CreateManyDiscountsInput = exports.CreateUserInput = exports.Role = void 0;
 var Role;
 (function (Role) {
     Role["USER"] = "USER";
@@ -10,6 +10,9 @@ var Role;
 class CreateUserInput {
 }
 exports.CreateUserInput = CreateUserInput;
+class CreateManyDiscountsInput {
+}
+exports.CreateManyDiscountsInput = CreateManyDiscountsInput;
 class CreateNewDiscountInput {
 }
 exports.CreateNewDiscountInput = CreateNewDiscountInput;
@@ -40,6 +43,9 @@ exports.CreateNewUserSuccess = CreateNewUserSuccess;
 class CreateNewDiscountSuccess {
 }
 exports.CreateNewDiscountSuccess = CreateNewDiscountSuccess;
+class CreateManyDiscountsSuccess {
+}
+exports.CreateManyDiscountsSuccess = CreateManyDiscountsSuccess;
 class Pagination {
 }
 exports.Pagination = Pagination;
@@ -52,6 +58,9 @@ exports.ShowUsersSuccess = ShowUsersSuccess;
 class ShowUserByIdSuccess {
 }
 exports.ShowUserByIdSuccess = ShowUserByIdSuccess;
+class ShowDicountByIdSuccess {
+}
+exports.ShowDicountByIdSuccess = ShowDicountByIdSuccess;
 class User {
 }
 exports.User = User;

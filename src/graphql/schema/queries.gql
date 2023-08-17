@@ -2,11 +2,14 @@ type Query {
     showUsers(filter: FilterUsers, filterUser: FilterShowUser): ShowUsersResult
 
     showUserById(id: ID!): ShowUserByIdResult
+
+    showDicountById(id: ID): ShowDicountByIdResult
 }
 
 
 union ShowUsersResult = ShowUsersSuccess | InvalidInputError | InternalError
 union ShowUserByIdResult = ShowUserByIdSuccess | InvalidInputError | InternalError
+union ShowDicountByIdResult = ShowDicountByIdSuccess | InvalidInputError | InternalError
 
 type ShowUsersSuccess {
     showUsersConnection: ShowUsersConnection
@@ -18,6 +21,10 @@ type ShowUserByIdSuccess {
 
 input FilterShowUser{
     role: [Role]
+}
+
+type ShowDicountByIdSuccess{
+    discount: Discount
 }
 
 input FilterUsers{

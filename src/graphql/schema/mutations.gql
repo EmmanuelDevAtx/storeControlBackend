@@ -2,16 +2,24 @@ type Mutation {
     createNewUser(user: CreateUserInput): CreateNewUserResult
 
     createNewDiscount(input: CreateNewDiscountInput): CreateNewDiscountResult
+
+    createManyDiscounts(input: CreateManyDiscountsInput): CreateManyDiscountsResult
 }
 
 union CreateNewUserResult =  CreateNewUserSuccess | InternalError | InvalidInputError
 union CreateNewDiscountResult =  CreateNewDiscountSuccess | InternalError | InvalidInputError
+union CreateManyDiscountsResult =  CreateManyDiscountsSuccess | InternalError | InvalidInputError
 
 input CreateUserInput{
     name:String!
 }
 
+input CreateManyDiscountsInput{
+    discounts: [CreateNewDiscountInput]
+}
+
 input CreateNewDiscountInput{
+    user: ID
     description: String!
     amount: Int!
 }
@@ -22,4 +30,8 @@ type CreateNewUserSuccess{
 
 type CreateNewDiscountSuccess{
     discount: Discount
+}
+
+type CreateManyDiscountsSuccess{
+    discounts: [Discount]
 }
