@@ -11,8 +11,10 @@ type User{
 }
 
 type Discount{
+    _id: ID
     description: String
     amount: Int
+    user: User
 }
 
 type ShowUsersConnection{
