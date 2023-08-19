@@ -9,6 +9,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { databaseFactory } from './core/db/databaseFactory';
 import { DiscountsModule } from './discounts/discounts.module';
 import { AuthModule } from './auth/auth.module';
+import { ChecksModule } from './checks/checks.module';
 
 @Module({
   imports: [
@@ -27,7 +28,8 @@ import { AuthModule } from './auth/auth.module';
     }),
     UsersModule,
     DiscountsModule,
-    AuthModule
+    AuthModule,
+    ChecksModule
   ],
   controllers: [AppController],
   providers: [AppService],
