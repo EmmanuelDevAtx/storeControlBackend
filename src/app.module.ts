@@ -8,6 +8,7 @@ import { UsersModule } from './users/users.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { databaseFactory } from './core/db/databaseFactory';
 import { DiscountsModule } from './discounts/discounts.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -25,7 +26,8 @@ import { DiscountsModule } from './discounts/discounts.module';
       inject: [ConfigService],
     }),
     UsersModule,
-    DiscountsModule
+    DiscountsModule,
+    AuthModule
   ],
   controllers: [AppController],
   providers: [AppService],
