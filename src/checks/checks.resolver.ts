@@ -1,7 +1,11 @@
 import { Resolver, Query, Mutation, Args, ResolveField } from '@nestjs/graphql';
 import { ChecksService } from './checks.service';
 import { CreateManyChecksInput, CreateManyChecksSuccess, InternalError, InvalidInputError, ShowCheckByIdSuccess } from 'src/graphql/graphql';
+import { JwtAdminGuard } from 'src/auth/guards/jwt-auth-gurad';
+import { UseGuards } from '@nestjs/common';
 
+
+@UseGuards( JwtAdminGuard )
 @Resolver('Check')
 export class ChecksResolver {
   constructor(private readonly checksService: ChecksService) {}
