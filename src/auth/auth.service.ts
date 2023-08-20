@@ -37,6 +37,14 @@ export class AuthService {
         return responseUser;
     }
 
+    async validateUser(email: string){
+        const user = await this.userService.findOne({email});
+
+        if(!user) throw new Error('User not found')
+
+        return user
+    }
+
 
 
     async encryptPassword(str: string): Promise<string> {
@@ -51,7 +59,7 @@ export class AuthService {
     }
 
     generateJwtToken(payload: any): string {
-        const secretKey = this.config.get<string>('JWT_LOTY_TOKEN_SECRET');
+        const secretKey = this.config.get<string>('JWT_TOKEN_SECRET');
         const options: jwt.SignOptions = {
           expiresIn: this.config.get<string>('JWT_TOKEN_EXPIRATION'),
         };

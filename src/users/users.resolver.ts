@@ -1,8 +1,10 @@
 import { Resolver, Query, Mutation, Args, ResolveField } from '@nestjs/graphql';
 import { UsersService } from './users.service';
 import { CreateNewUserSuccess, CreateUserInput, FilterShowUser, InternalError, InvalidInputError, Role, ShowUserByIdSuccess, ShowUsersSuccess } from 'src/graphql/graphql';
-import { Logger } from '@nestjs/common';
+import { Logger, UseGuards } from '@nestjs/common';
+import { JwtAdminGuard } from 'src/auth/guards/jwt-auth-gurad';
 
+@UseGuards( JwtAdminGuard )
 @Resolver('User')
 export class UsersResolver {
   protected logger: Logger;
