@@ -2,6 +2,8 @@ import { Args, Mutation, Query, ResolveField, Resolver } from '@nestjs/graphql';
 import { AuthService } from './auth.service';
 import { CreateAdimInput, CreateAdminSuccess, CreateUserInput, InternalError, InvalidInputError, LoginSuccess, Role } from 'src/graphql/graphql';
 import { UsersService } from 'src/users/users.service';
+import { JwtAdminGuard } from './guards/jwt-auth-gurad';
+import { UseGuards } from '@nestjs/common';
 
 @Resolver('Auth')
 export class AuthResolver {
@@ -22,6 +24,7 @@ export class AuthResolver {
     })
   }
 
+  @UseGuards( JwtAdminGuard )
   @Mutation('createAdmin')
   async createAdmin(
     @Args('user') user: CreateAdimInput
