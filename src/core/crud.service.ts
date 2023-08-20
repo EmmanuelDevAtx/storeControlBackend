@@ -29,7 +29,7 @@ export abstract class CrudService<T> {
     this.logger = new Logger(`${name}Service`);
   }
 
-  async findAll(query: FindAllQuery, filter:any): Promise<PaginatedEntities<T>> {
+  async findAll(query: FindAllQuery, filter?:any): Promise<PaginatedEntities<T>> {
     try {
       return await this.repository.findAll(query, filter);
     } catch (e) {

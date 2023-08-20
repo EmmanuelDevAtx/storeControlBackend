@@ -4,12 +4,18 @@ type Query {
     showUserById(id: ID!): ShowUserByIdResult
 
     showDicountById(id: ID): ShowDicountByIdResult
+
+    showCheckById(id: ID): ShowCheckByIdResult
+
+    login(email: String, password: String ): LoginResult
 }
 
 
 union ShowUsersResult = ShowUsersSuccess | InvalidInputError | InternalError
 union ShowUserByIdResult = ShowUserByIdSuccess | InvalidInputError | InternalError
 union ShowDicountByIdResult = ShowDicountByIdSuccess | InvalidInputError | InternalError
+union ShowCheckByIdResult = ShowCheckByIdSuccess | InvalidInputError | InternalError
+union LoginResult = LoginSuccess | InvalidInputError | InternalError
 
 type ShowUsersSuccess {
     showUsersConnection: ShowUsersConnection
@@ -27,6 +33,14 @@ type ShowDicountByIdSuccess{
     discount: Discount
 }
 
+type ShowCheckByIdSuccess{
+    check: Check
+}
+
 input FilterUsers{
     pagination: FilterPagination
+}
+
+type LoginSuccess{
+    token: String
 }

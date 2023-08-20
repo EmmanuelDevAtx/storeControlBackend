@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ShowUsersConnection = exports.Discount = exports.User = exports.ShowDicountByIdSuccess = exports.ShowUserByIdSuccess = exports.ShowUsersSuccess = exports.IQuery = exports.Pagination = exports.CreateManyDiscountsSuccess = exports.CreateNewDiscountSuccess = exports.CreateNewUserSuccess = exports.IMutation = exports.BadLoginTypeError = exports.InvalidInputError = exports.InternalError = exports.FilterUsers = exports.FilterShowUser = exports.FilterPagination = exports.CreateNewDiscountInput = exports.CreateManyDiscountsInput = exports.CreateUserInput = exports.Role = void 0;
+exports.ShowUsersConnection = exports.Check = exports.Discount = exports.User = exports.LoginSuccess = exports.ShowCheckByIdSuccess = exports.ShowDicountByIdSuccess = exports.ShowUserByIdSuccess = exports.ShowUsersSuccess = exports.IQuery = exports.Pagination = exports.CreateAdminSuccess = exports.CreateManyChecksSuccess = exports.CreateManyDiscountsSuccess = exports.CreateNewDiscountSuccess = exports.CreateNewUserSuccess = exports.IMutation = exports.BadLoginTypeError = exports.InvalidInputError = exports.InternalError = exports.FilterUsers = exports.FilterShowUser = exports.FilterPagination = exports.ChecksInput = exports.CreateManyChecksInput = exports.CreateNewDiscountInput = exports.CreateManyDiscountsInput = exports.CreateAdimInput = exports.CreateUserInput = exports.Role = void 0;
 var Role;
 (function (Role) {
     Role["USER"] = "USER";
@@ -10,12 +10,21 @@ var Role;
 class CreateUserInput {
 }
 exports.CreateUserInput = CreateUserInput;
+class CreateAdimInput {
+}
+exports.CreateAdimInput = CreateAdimInput;
 class CreateManyDiscountsInput {
 }
 exports.CreateManyDiscountsInput = CreateManyDiscountsInput;
 class CreateNewDiscountInput {
 }
 exports.CreateNewDiscountInput = CreateNewDiscountInput;
+class CreateManyChecksInput {
+}
+exports.CreateManyChecksInput = CreateManyChecksInput;
+class ChecksInput {
+}
+exports.ChecksInput = ChecksInput;
 class FilterPagination {
 }
 exports.FilterPagination = FilterPagination;
@@ -46,6 +55,12 @@ exports.CreateNewDiscountSuccess = CreateNewDiscountSuccess;
 class CreateManyDiscountsSuccess {
 }
 exports.CreateManyDiscountsSuccess = CreateManyDiscountsSuccess;
+class CreateManyChecksSuccess {
+}
+exports.CreateManyChecksSuccess = CreateManyChecksSuccess;
+class CreateAdminSuccess {
+}
+exports.CreateAdminSuccess = CreateAdminSuccess;
 class Pagination {
 }
 exports.Pagination = Pagination;
@@ -61,12 +76,21 @@ exports.ShowUserByIdSuccess = ShowUserByIdSuccess;
 class ShowDicountByIdSuccess {
 }
 exports.ShowDicountByIdSuccess = ShowDicountByIdSuccess;
+class ShowCheckByIdSuccess {
+}
+exports.ShowCheckByIdSuccess = ShowCheckByIdSuccess;
+class LoginSuccess {
+}
+exports.LoginSuccess = LoginSuccess;
 class User {
 }
 exports.User = User;
 class Discount {
 }
 exports.Discount = Discount;
+class Check {
+}
+exports.Check = Check;
 class ShowUsersConnection {
 }
 exports.ShowUsersConnection = ShowUsersConnection;
