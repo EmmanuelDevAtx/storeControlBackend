@@ -10,6 +10,7 @@ import { databaseFactory } from './core/db/databaseFactory';
 import { DiscountsModule } from './discounts/discounts.module';
 import { AuthModule } from './auth/auth.module';
 import { ChecksModule } from './checks/checks.module';
+import { ReportsModule } from './reports/reports.module';
 
 @Module({
   imports: [
@@ -29,7 +30,8 @@ import { ChecksModule } from './checks/checks.module';
     UsersModule,
     DiscountsModule,
     AuthModule,
-    ChecksModule
+    ChecksModule,
+    ReportsModule
   ],
   controllers: [AppController],
   providers: [AppService],

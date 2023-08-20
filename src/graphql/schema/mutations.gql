@@ -7,7 +7,9 @@ type Mutation {
 
     createManyChecks(input: CreateManyChecksInput): CreateManyChecksResult
 
-    createAdmin(user: CreateAdimInput): CreateAdminResult 
+    createAdmin(user: CreateAdimInput): CreateAdminResult
+
+    createReport(input: CreateReportInput): CreateReportResult
 }
 
 union CreateNewUserResult =  CreateNewUserSuccess | InternalError | InvalidInputError
@@ -15,6 +17,7 @@ union CreateNewDiscountResult =  CreateNewDiscountSuccess | InternalError | Inva
 union CreateManyDiscountsResult =  CreateManyDiscountsSuccess | InternalError | InvalidInputError
 union CreateManyChecksResult =  CreateManyChecksSuccess | InternalError | InvalidInputError
 union CreateAdminResult =  CreateAdminSuccess | InternalError | InvalidInputError
+union CreateReportResult =  CreateReportSuccess | InternalError | InvalidInputError
 
 input CreateUserInput{
     name:String!
@@ -34,6 +37,17 @@ input CreateNewDiscountInput{
     user: ID
     description: String!
     amount: Int!
+}
+
+input CreateReportInput{
+    amountPerHour: Int
+    usersPay: [UsersPayInput]
+}
+
+input UsersPayInput{
+    user:ID
+    discounts: [CreateNewDiscountInput]
+    total: Int
 }
 
 input CreateManyChecksInput{
@@ -64,4 +78,8 @@ type CreateManyChecksSuccess{
 
 type CreateAdminSuccess{
     user: User
+}
+
+type CreateReportSuccess{
+    report: Report
 }

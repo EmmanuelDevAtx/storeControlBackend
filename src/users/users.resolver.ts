@@ -49,7 +49,6 @@ export class UsersResolver {
 
   @Query('showUserById')
   async showUserById(
-    @CurrentUser() currentAdmin: any,
     @Args('id') id:string  
     ){  
     const user = await this.usersService.findById(id);

@@ -34,6 +34,17 @@ export class CreateNewDiscountInput {
     amount: number;
 }
 
+export class CreateReportInput {
+    amountPerHour?: Nullable<number>;
+    usersPay?: Nullable<Nullable<UsersPayInput>[]>;
+}
+
+export class UsersPayInput {
+    user?: Nullable<string>;
+    discounts?: Nullable<Nullable<CreateNewDiscountInput>[]>;
+    total?: Nullable<number>;
+}
+
 export class CreateManyChecksInput {
     user?: Nullable<string>;
     checks?: Nullable<Nullable<ChecksInput>[]>;
@@ -88,6 +99,8 @@ export abstract class IMutation {
     abstract createManyChecks(input?: Nullable<CreateManyChecksInput>): Nullable<CreateManyChecksResult> | Promise<Nullable<CreateManyChecksResult>>;
 
     abstract createAdmin(user?: Nullable<CreateAdimInput>): Nullable<CreateAdminResult> | Promise<Nullable<CreateAdminResult>>;
+
+    abstract createReport(input?: Nullable<CreateReportInput>): Nullable<CreateReportResult> | Promise<Nullable<CreateReportResult>>;
 }
 
 export class CreateNewUserSuccess {
@@ -113,6 +126,11 @@ export class CreateManyChecksSuccess {
 export class CreateAdminSuccess {
     __typename?: 'CreateAdminSuccess';
     user?: Nullable<User>;
+}
+
+export class CreateReportSuccess {
+    __typename?: 'CreateReportSuccess';
+    report?: Nullable<Report>;
 }
 
 export class Pagination {
@@ -184,6 +202,22 @@ export class Check {
     endTime?: Nullable<Date>;
 }
 
+export class Report {
+    __typename?: 'Report';
+    _id?: Nullable<string>;
+    owner?: Nullable<User>;
+    amountPerHour?: Nullable<number>;
+    dateCreated?: Nullable<Date>;
+    usersPay?: Nullable<Nullable<UsersPayInformation>[]>;
+}
+
+export class UsersPayInformation {
+    __typename?: 'UsersPayInformation';
+    user?: Nullable<User>;
+    total?: Nullable<number>;
+    discounts?: Nullable<Nullable<Discount>[]>;
+}
+
 export class ShowUsersConnection {
     __typename?: 'ShowUsersConnection';
     pageInfo?: Nullable<Pagination>;
@@ -196,6 +230,7 @@ export type CreateNewDiscountResult = CreateNewDiscountSuccess | InternalError |
 export type CreateManyDiscountsResult = CreateManyDiscountsSuccess | InternalError | InvalidInputError;
 export type CreateManyChecksResult = CreateManyChecksSuccess | InternalError | InvalidInputError;
 export type CreateAdminResult = CreateAdminSuccess | InternalError | InvalidInputError;
+export type CreateReportResult = CreateReportSuccess | InternalError | InvalidInputError;
 export type ShowUsersResult = ShowUsersSuccess | InvalidInputError | InternalError;
 export type ShowUserByIdResult = ShowUserByIdSuccess | InvalidInputError | InternalError;
 export type ShowDicountByIdResult = ShowDicountByIdSuccess | InvalidInputError | InternalError;

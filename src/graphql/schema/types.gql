@@ -26,6 +26,20 @@ type Check{
     endTime: Date
 }
 
+type Report{
+    _id: ID
+    owner: User
+    amountPerHour: Int
+    dateCreated: Date
+    usersPay: [UsersPayInformation]
+}
+
+type UsersPayInformation{
+    user: User
+    total: Int
+    discounts: [Discount]
+}
+
 type ShowUsersConnection{
     pageInfo: Pagination
     total: Int
