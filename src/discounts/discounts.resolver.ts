@@ -1,9 +1,11 @@
 import { Resolver, Query, Mutation, Args, ResolveField } from '@nestjs/graphql';
 import { DiscountsService } from './discounts.service';
 import { CreateManyDiscountsInput, CreateManyDiscountsSuccess, CreateNewDiscountInput, CreateNewDiscountSuccess, InternalError, InvalidInputError, ShowDicountByIdSuccess } from 'src/graphql/graphql';
-import { Logger } from '@nestjs/common';
+import { Logger, UseGuards } from '@nestjs/common';
 import { UsersService } from 'src/users/users.service';
+import { JwtAdminGuard } from 'src/auth/guards/jwt-auth-gurad';
 
+@UseGuards( JwtAdminGuard )
 @Resolver('Discount')
 export class DiscountsResolver {
 

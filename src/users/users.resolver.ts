@@ -3,6 +3,7 @@ import { UsersService } from './users.service';
 import { CreateNewUserSuccess, CreateUserInput, FilterShowUser, InternalError, InvalidInputError, Role, ShowUserByIdSuccess, ShowUsersSuccess } from 'src/graphql/graphql';
 import { Logger, UseGuards } from '@nestjs/common';
 import { JwtAdminGuard } from 'src/auth/guards/jwt-auth-gurad';
+import { CurrentUser } from 'src/auth/decorators/admin.decorator';
 
 @UseGuards( JwtAdminGuard )
 @Resolver('User')
@@ -48,6 +49,7 @@ export class UsersResolver {
 
   @Query('showUserById')
   async showUserById(
+    @CurrentUser() currentAdmin: any,
     @Args('id') id:string  
     ){  
     const user = await this.usersService.findById(id);
