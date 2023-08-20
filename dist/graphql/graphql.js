@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ShowUsersConnection = exports.Check = exports.Discount = exports.User = exports.ShowCheckByIdSuccess = exports.ShowDicountByIdSuccess = exports.ShowUserByIdSuccess = exports.ShowUsersSuccess = exports.IQuery = exports.Pagination = exports.CreateManyChecksSuccess = exports.CreateManyDiscountsSuccess = exports.CreateNewDiscountSuccess = exports.CreateNewUserSuccess = exports.IMutation = exports.BadLoginTypeError = exports.InvalidInputError = exports.InternalError = exports.FilterUsers = exports.FilterShowUser = exports.FilterPagination = exports.ChecksInput = exports.CreateManyChecksInput = exports.CreateNewDiscountInput = exports.CreateManyDiscountsInput = exports.CreateUserInput = exports.Role = void 0;
+exports.ShowUsersConnection = exports.Check = exports.Discount = exports.User = exports.LoginSuccess = exports.ShowCheckByIdSuccess = exports.ShowDicountByIdSuccess = exports.ShowUserByIdSuccess = exports.ShowUsersSuccess = exports.IQuery = exports.Pagination = exports.CreateAdminSuccess = exports.CreateManyChecksSuccess = exports.CreateManyDiscountsSuccess = exports.CreateNewDiscountSuccess = exports.CreateNewUserSuccess = exports.IMutation = exports.BadLoginTypeError = exports.InvalidInputError = exports.InternalError = exports.FilterUsers = exports.FilterShowUser = exports.FilterPagination = exports.ChecksInput = exports.CreateManyChecksInput = exports.CreateNewDiscountInput = exports.CreateManyDiscountsInput = exports.CreateAdimInput = exports.CreateUserInput = exports.Role = void 0;
 var Role;
 (function (Role) {
     Role["USER"] = "USER";
@@ -10,6 +10,9 @@ var Role;
 class CreateUserInput {
 }
 exports.CreateUserInput = CreateUserInput;
+class CreateAdimInput {
+}
+exports.CreateAdimInput = CreateAdimInput;
 class CreateManyDiscountsInput {
 }
 exports.CreateManyDiscountsInput = CreateManyDiscountsInput;
@@ -55,6 +58,9 @@ exports.CreateManyDiscountsSuccess = CreateManyDiscountsSuccess;
 class CreateManyChecksSuccess {
 }
 exports.CreateManyChecksSuccess = CreateManyChecksSuccess;
+class CreateAdminSuccess {
+}
+exports.CreateAdminSuccess = CreateAdminSuccess;
 class Pagination {
 }
 exports.Pagination = Pagination;
@@ -73,6 +79,9 @@ exports.ShowDicountByIdSuccess = ShowDicountByIdSuccess;
 class ShowCheckByIdSuccess {
 }
 exports.ShowCheckByIdSuccess = ShowCheckByIdSuccess;
+class LoginSuccess {
+}
+exports.LoginSuccess = LoginSuccess;
 class User {
 }
 exports.User = User;

@@ -6,15 +6,24 @@ type Mutation {
     createManyDiscounts(input: CreateManyDiscountsInput): CreateManyDiscountsResult
 
     createManyChecks(input: CreateManyChecksInput): CreateManyChecksResult
+
+    createAdmin(user: CreateAdimInput): CreateAdminResult 
 }
 
 union CreateNewUserResult =  CreateNewUserSuccess | InternalError | InvalidInputError
 union CreateNewDiscountResult =  CreateNewDiscountSuccess | InternalError | InvalidInputError
 union CreateManyDiscountsResult =  CreateManyDiscountsSuccess | InternalError | InvalidInputError
 union CreateManyChecksResult =  CreateManyChecksSuccess | InternalError | InvalidInputError
+union CreateAdminResult =  CreateAdminSuccess | InternalError | InvalidInputError
 
 input CreateUserInput{
     name:String!
+}
+
+input CreateAdimInput{
+    name:String!
+    email:String
+    password:String
 }
 
 input CreateManyDiscountsInput{
@@ -51,4 +60,8 @@ type CreateManyDiscountsSuccess{
 
 type CreateManyChecksSuccess{
     checks: [Check]
+}
+
+type CreateAdminSuccess{
+    user: User
 }

@@ -6,6 +6,11 @@ export declare enum Role {
 export declare class CreateUserInput {
     name: string;
 }
+export declare class CreateAdimInput {
+    name: string;
+    email?: Nullable<string>;
+    password?: Nullable<string>;
+}
 export declare class CreateManyDiscountsInput {
     discounts?: Nullable<Nullable<CreateNewDiscountInput>[]>;
 }
@@ -53,6 +58,7 @@ export declare abstract class IMutation {
     abstract createNewDiscount(input?: Nullable<CreateNewDiscountInput>): Nullable<CreateNewDiscountResult> | Promise<Nullable<CreateNewDiscountResult>>;
     abstract createManyDiscounts(input?: Nullable<CreateManyDiscountsInput>): Nullable<CreateManyDiscountsResult> | Promise<Nullable<CreateManyDiscountsResult>>;
     abstract createManyChecks(input?: Nullable<CreateManyChecksInput>): Nullable<CreateManyChecksResult> | Promise<Nullable<CreateManyChecksResult>>;
+    abstract createAdmin(user?: Nullable<CreateAdimInput>): Nullable<CreateAdminResult> | Promise<Nullable<CreateAdminResult>>;
 }
 export declare class CreateNewUserSuccess {
     __typename?: 'CreateNewUserSuccess';
@@ -70,6 +76,10 @@ export declare class CreateManyChecksSuccess {
     __typename?: 'CreateManyChecksSuccess';
     checks?: Nullable<Nullable<Check>[]>;
 }
+export declare class CreateAdminSuccess {
+    __typename?: 'CreateAdminSuccess';
+    user?: Nullable<User>;
+}
 export declare class Pagination {
     __typename?: 'Pagination';
     startCursor?: Nullable<string>;
@@ -82,6 +92,7 @@ export declare abstract class IQuery {
     abstract showUserById(id: string): Nullable<ShowUserByIdResult> | Promise<Nullable<ShowUserByIdResult>>;
     abstract showDicountById(id?: Nullable<string>): Nullable<ShowDicountByIdResult> | Promise<Nullable<ShowDicountByIdResult>>;
     abstract showCheckById(id?: Nullable<string>): Nullable<ShowCheckByIdResult> | Promise<Nullable<ShowCheckByIdResult>>;
+    abstract login(email?: Nullable<string>, password?: Nullable<string>): Nullable<LoginResult> | Promise<Nullable<LoginResult>>;
 }
 export declare class ShowUsersSuccess {
     __typename?: 'ShowUsersSuccess';
@@ -98,6 +109,10 @@ export declare class ShowDicountByIdSuccess {
 export declare class ShowCheckByIdSuccess {
     __typename?: 'ShowCheckByIdSuccess';
     check?: Nullable<Check>;
+}
+export declare class LoginSuccess {
+    __typename?: 'LoginSuccess';
+    token?: Nullable<string>;
 }
 export declare class User {
     __typename?: 'User';
@@ -129,9 +144,11 @@ export type CreateNewUserResult = CreateNewUserSuccess | InternalError | Invalid
 export type CreateNewDiscountResult = CreateNewDiscountSuccess | InternalError | InvalidInputError;
 export type CreateManyDiscountsResult = CreateManyDiscountsSuccess | InternalError | InvalidInputError;
 export type CreateManyChecksResult = CreateManyChecksSuccess | InternalError | InvalidInputError;
+export type CreateAdminResult = CreateAdminSuccess | InternalError | InvalidInputError;
 export type ShowUsersResult = ShowUsersSuccess | InvalidInputError | InternalError;
 export type ShowUserByIdResult = ShowUserByIdSuccess | InvalidInputError | InternalError;
 export type ShowDicountByIdResult = ShowDicountByIdSuccess | InvalidInputError | InternalError;
 export type ShowCheckByIdResult = ShowCheckByIdSuccess | InvalidInputError | InternalError;
+export type LoginResult = LoginSuccess | InvalidInputError | InternalError;
 type Nullable<T> = T | null;
 export {};
