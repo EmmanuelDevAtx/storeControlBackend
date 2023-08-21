@@ -145,13 +145,15 @@ export abstract class IQuery {
 
     abstract showUsers(filter?: Nullable<FilterUsers>, filterUser?: Nullable<FilterShowUser>): Nullable<ShowUsersResult> | Promise<Nullable<ShowUsersResult>>;
 
-    abstract showUserById(id: string): Nullable<ShowUserByIdResult> | Promise<Nullable<ShowUserByIdResult>>;
+    abstract showUserById(id?: Nullable<string>): Nullable<ShowUserByIdResult> | Promise<Nullable<ShowUserByIdResult>>;
 
     abstract showDicountById(id?: Nullable<string>): Nullable<ShowDicountByIdResult> | Promise<Nullable<ShowDicountByIdResult>>;
 
     abstract showCheckById(id?: Nullable<string>): Nullable<ShowCheckByIdResult> | Promise<Nullable<ShowCheckByIdResult>>;
 
     abstract login(email?: Nullable<string>, password?: Nullable<string>): Nullable<LoginResult> | Promise<Nullable<LoginResult>>;
+
+    abstract showReportById(id?: Nullable<string>): Nullable<ShowReportByIdResult> | Promise<Nullable<ShowReportByIdResult>>;
 }
 
 export class ShowUsersSuccess {
@@ -177,6 +179,11 @@ export class ShowCheckByIdSuccess {
 export class LoginSuccess {
     __typename?: 'LoginSuccess';
     token?: Nullable<string>;
+}
+
+export class ShowReportByIdSuccess {
+    __typename?: 'ShowReportByIdSuccess';
+    report?: Nullable<Report>;
 }
 
 export class User {
@@ -236,4 +243,5 @@ export type ShowUserByIdResult = ShowUserByIdSuccess | InvalidInputError | Inter
 export type ShowDicountByIdResult = ShowDicountByIdSuccess | InvalidInputError | InternalError;
 export type ShowCheckByIdResult = ShowCheckByIdSuccess | InvalidInputError | InternalError;
 export type LoginResult = LoginSuccess | InvalidInputError | InternalError;
+export type ShowReportByIdResult = ShowReportByIdSuccess | InvalidInputError | InternalError;
 type Nullable<T> = T | null;

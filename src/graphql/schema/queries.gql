@@ -1,13 +1,15 @@
 type Query {
     showUsers(filter: FilterUsers, filterUser: FilterShowUser): ShowUsersResult
 
-    showUserById(id: ID!): ShowUserByIdResult
+    showUserById(id: ID): ShowUserByIdResult
 
     showDicountById(id: ID): ShowDicountByIdResult
 
     showCheckById(id: ID): ShowCheckByIdResult
 
     login(email: String, password: String ): LoginResult
+
+    showReportById(id: ID): ShowReportByIdResult
 }
 
 
@@ -16,6 +18,7 @@ union ShowUserByIdResult = ShowUserByIdSuccess | InvalidInputError | InternalErr
 union ShowDicountByIdResult = ShowDicountByIdSuccess | InvalidInputError | InternalError
 union ShowCheckByIdResult = ShowCheckByIdSuccess | InvalidInputError | InternalError
 union LoginResult = LoginSuccess | InvalidInputError | InternalError
+union ShowReportByIdResult = ShowReportByIdSuccess | InvalidInputError | InternalError
 
 type ShowUsersSuccess {
     showUsersConnection: ShowUsersConnection
@@ -43,4 +46,8 @@ input FilterUsers{
 
 type LoginSuccess{
     token: String
+}
+
+type ShowReportByIdSuccess{
+    report: Report
 }
