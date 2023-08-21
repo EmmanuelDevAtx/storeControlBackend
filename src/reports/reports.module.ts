@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ReportsService } from './reports.service';
-import { CreateReportResultResolver, ReportsResolver } from './reports.resolver';
+import { CreateNewUserResultResolver, ReportsResolver } from './reports.resolver';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Report, ReportSchema } from './entities/report.entity';
 import { ReportsRepository } from './reports.repository';
@@ -24,7 +24,7 @@ import { DiscountsModule } from 'src/discounts/discounts.module';
     ReportsService,
     ReportsRepository,
 
-    CreateReportResultResolver
+    CreateNewUserResultResolver
   ]
 })
 export class ReportsModule {}

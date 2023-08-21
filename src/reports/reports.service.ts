@@ -23,22 +23,25 @@ export class ReportsService extends CrudService<Report>{
 
   async createReport(input: CreateReportInput, owner: User) {
 
-    const usersPayInformation:any[] = await input.usersPay.map(async (user: UsersPayInput)=>{
+    const usersPayInformation: any[] = [];
+    for (const user of input.usersPay) {
       const currentUser = await this.usersService.findById(user.user);
-      const dicounts = await this.discountsService.createManyDiscounts({discounts: user.discounts});
-
-      await Promise.all(dicounts)
-      return {
-          user: currentUser._id,
-          dicounts: dicounts.map((item: any)=> {return item._id}),
-          total:10
-      }
-    })
-
-    await Promise.all(usersPayInformation)
-    console.log('users information',usersPayInformation)
-
-    return 'This action adds a new report';
+      const discounts = await this.discountsService.createManyDiscounts({ discounts: user.discounts });
+      const totalAmount = discounts.reduce((total: number, currentValue: any) => total + currentValue.amount, 0);
+  
+      usersPayInformation.push({
+        user: currentUser._id,
+        discounts: discounts.map((item: any) => item._id),
+        total: totalAmount
+      });
+    }
+    const variables:any = {
+      owner: owner._id,
+      amountPerHour: input.amountPerHour,
+      dateCreated: new Date(),
+      usersPay: usersPayInformation
+    }
+    return await this.repository.create(variables);
   }
 
 }

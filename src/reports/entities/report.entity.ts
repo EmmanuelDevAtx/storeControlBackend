@@ -9,6 +9,7 @@ export class Discounts{
 }
 
 export class UsersInformation{
+
     @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User' })
     user?: User
 

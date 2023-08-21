@@ -25,22 +25,18 @@ export class ReportsResolver {
 }
 
 @Resolver('CreateReportResult')
-export class CreateReportResultResolver{
+export class CreateNewUserResultResolver {
   @ResolveField()
-  __resolverType(obj){
-
-    if(obj instanceof CreateReportSuccess){
-      return 'CreateReportSuccess'
+  __resolveType(obj) {
+    if (obj instanceof CreateReportSuccess) {
+      return 'CreateReportSuccess';
     }
-
-    if(obj instanceof InternalError){
-      return 'InternalError'
+    if (obj instanceof InternalError) {
+      return 'InternalError';
     }
-
-    if(obj instanceof InvalidInputError){
-      return 'InvalidInputError'
+    if (obj instanceof InvalidInputError) {
+      return 'InvalidInputError';
     }
-
-    return null
+    return null;
   }
 }
