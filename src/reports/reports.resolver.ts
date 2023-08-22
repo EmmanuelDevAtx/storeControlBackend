@@ -6,6 +6,7 @@ import { Logger, UseGuards } from '@nestjs/common';
 import { JwtAdminGuard } from 'src/auth/guards/jwt-auth-gurad';
 import { DiscountsService } from 'src/discounts/discounts.service';
 import { UsersService } from 'src/users/users.service';
+import { ChecksService } from 'src/checks/checks.service';
 
 @Resolver('Report')
 export class ReportsResolver {
@@ -44,6 +45,7 @@ export class ReportUserPayResolver {
   constructor(
     readonly discountService: DiscountsService,
     readonly userService: UsersService,
+    readonly checkService: ChecksService,
   ) {
     this.logger = new Logger('ReportUserPayResolver');
   }
@@ -57,17 +59,24 @@ export class ReportUserPayResolver {
       const user = await this.userService.findById(currentUser.user);
       user.password = '';
       const discounts : any[] = [];
+      const checks : any[] = [];
 
       for(const currentDiscount of currentUser.discounts){
         const discount = await this.discountService.findById(currentDiscount)
         discounts.push(discount);
       }
+      for(const currentCheck of currentUser.checks){
+        const check = await this.checkService.findById(currentCheck)
+        checks.push(check);
+      }
+
       allUsersData.push({
         user,
         total: currentUser.total,
-        discounts
+        discounts,
+        checks
       })
-    }
+    } 
     return allUsersData
   }
 }

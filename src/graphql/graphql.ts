@@ -39,10 +39,15 @@ export class CreateReportInput {
     usersPay?: Nullable<Nullable<UsersPayInput>[]>;
 }
 
+export class Checksinput {
+    check?: Nullable<string>;
+}
+
 export class UsersPayInput {
     user?: Nullable<string>;
-    discounts?: Nullable<Nullable<CreateNewDiscountInput>[]>;
     total?: Nullable<number>;
+    discounts?: Nullable<Nullable<CreateNewDiscountInput>[]>;
+    checks?: Nullable<Nullable<Checksinput>[]>;
 }
 
 export class CreateManyChecksInput {
@@ -223,6 +228,7 @@ export class UsersPayInformation {
     user?: Nullable<User>;
     total?: Nullable<number>;
     discounts?: Nullable<Nullable<Discount>[]>;
+    checks?: Nullable<Nullable<Check>[]>;
 }
 
 export class ShowUsersConnection {

@@ -38,6 +38,7 @@ type UsersPayInformation{
     user: User
     total: Int
     discounts: [Discount]
+    checks: [Check]
 }
 
 type ShowUsersConnection{

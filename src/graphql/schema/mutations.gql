@@ -44,10 +44,15 @@ input CreateReportInput{
     usersPay: [UsersPayInput]
 }
 
+input Checksinput{
+    check: ID
+}
+
 input UsersPayInput{
     user:ID
-    discounts: [CreateNewDiscountInput]
     total: Int
+    discounts: [CreateNewDiscountInput]
+    checks: [Checksinput]
 }
 
 input CreateManyChecksInput{
