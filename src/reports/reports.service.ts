@@ -37,7 +37,7 @@ export class ReportsService extends CrudService<Report>{
           const checkResponse = await this.checksService.findById(check.check)
           const startTime:Date = new Date(`${checkResponse.startTime}`);
           const endTime:Date = new Date(`${checkResponse.endTime}`);
-          const timeDifferenceInMilliseconds:number = 1692697334000 - 1692672134000;
+          const timeDifferenceInMilliseconds:number = endTime.getTime() - startTime.getTime();
           const timeDifferenceInHours = (timeDifferenceInMilliseconds / (1000 * 60 * 60) * input.amountPerHour);
           hoursWorked.push(timeDifferenceInHours);
           allChecks.push(checkResponse);
