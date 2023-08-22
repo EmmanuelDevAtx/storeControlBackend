@@ -23,6 +23,10 @@ import { UsersModule } from 'src/users/users.module';
     CreateNewDiscountResultResolver,
     CreateManyDiscountsResultResolver,
     ShowDicountByIdResultResolver
+  ],
+
+  exports:[
+    DiscountsService
   ]
 })
 export class DiscountsModule {}

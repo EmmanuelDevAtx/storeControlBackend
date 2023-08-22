@@ -20,6 +20,9 @@ import { ChecksRepository } from './checks.repository';
 
     CreateNewUserResultResolver,
     ShowCheckByIdResultResolver
+  ],
+  exports: [
+    ChecksService
   ]
 })
 export class ChecksModule {}
