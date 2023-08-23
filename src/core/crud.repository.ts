@@ -25,7 +25,6 @@ export abstract class CrudRepository<T> {
       : findItems
       const newQuery = query;
       const pageSize = query.pagination?.limit || PAGE_SIZE_LIMIT;
-      console.log('Querie data', querieData)
       const results = await this.model
         .find(querieData)
         .limit(pageSize)
