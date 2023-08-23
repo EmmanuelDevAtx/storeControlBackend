@@ -38,19 +38,21 @@ export class ReportsService extends CrudService<Report>{
           const startTime:Date = new Date(`${checkResponse.startTime}`);
           const endTime:Date = new Date(`${checkResponse.endTime}`);
           const timeDifferenceInMilliseconds:number = endTime.getTime() - startTime.getTime();
-          const timeDifferenceInHours = (timeDifferenceInMilliseconds / (1000 * 60 * 60) * input.amountPerHour);
+          const timeDifferenceInHours = timeDifferenceInMilliseconds / (1000 * 60 * 60);
+          await this.checksService.update(`${checkResponse._id}`, {isActive: false})
           hoursWorked.push(timeDifferenceInHours);
           allChecks.push(checkResponse);
         }
       }
-      const amountpPerHour = hoursWorked.length > 0
+      const totalHours = (hoursWorked.length > 0
       ? hoursWorked.reduce((total: number, currentValue: number) => total + currentValue, 0)
-      : 0 
+      : 0 ) 
       usersPayInformation.push({
         user: currentUser._id,
         discounts: discounts.map((item: any) => item._id),
         checks: allChecks.map((item:any)=> item._id),
-        total: amountpPerHour - totalDiscounts
+        totalPay: (totalHours * input.amountPerHour) - totalDiscounts,
+        hoursWorked: totalHours
       });
     }
     const variables:any = {

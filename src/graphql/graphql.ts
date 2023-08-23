@@ -34,6 +34,11 @@ export class CreateNewDiscountInput {
     amount: number;
 }
 
+export class CreateNewDiscountReportInput {
+    description: string;
+    amount: number;
+}
+
 export class CreateReportInput {
     amountPerHour?: Nullable<number>;
     usersPay?: Nullable<Nullable<UsersPayInput>[]>;
@@ -46,7 +51,7 @@ export class Checksinput {
 export class UsersPayInput {
     user?: Nullable<string>;
     total?: Nullable<number>;
-    discounts?: Nullable<Nullable<CreateNewDiscountInput>[]>;
+    discounts?: Nullable<Nullable<CreateNewDiscountReportInput>[]>;
     checks?: Nullable<Nullable<Checksinput>[]>;
 }
 
@@ -212,6 +217,7 @@ export class Check {
     user?: Nullable<User>;
     startTime?: Nullable<Date>;
     endTime?: Nullable<Date>;
+    isActive?: Nullable<boolean>;
 }
 
 export class Report {
@@ -226,7 +232,8 @@ export class Report {
 export class UsersPayInformation {
     __typename?: 'UsersPayInformation';
     user?: Nullable<User>;
-    total?: Nullable<number>;
+    totalPay?: Nullable<number>;
+    hoursWorked?: Nullable<number>;
     discounts?: Nullable<Nullable<Discount>[]>;
     checks?: Nullable<Nullable<Check>[]>;
 }

@@ -22,7 +22,10 @@ export class UsersInformation{
     user?: User
 
     @Prop({type: Number})
-    total?: number
+    hoursWorked?: number
+
+    @Prop({type: Number})
+    totalPay?: number
 
     @Prop([{type: Discounts}])
     discounts?: Discounts[]

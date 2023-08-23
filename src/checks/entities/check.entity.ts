@@ -15,6 +15,9 @@ export class Check {
     
     @Prop({type: Date})
     endTime: Date
+
+    @Prop({type: Boolean})
+    isActive: boolean
 }
 
 export const CheckSchema = SchemaFactory.createForClass(Check);

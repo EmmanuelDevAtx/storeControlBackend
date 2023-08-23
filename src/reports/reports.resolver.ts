@@ -7,6 +7,7 @@ import { JwtAdminGuard } from 'src/auth/guards/jwt-auth-gurad';
 import { DiscountsService } from 'src/discounts/discounts.service';
 import { UsersService } from 'src/users/users.service';
 import { ChecksService } from 'src/checks/checks.service';
+import { Report } from './entities/report.entity' 
 
 @Resolver('Report')
 export class ReportsResolver {
@@ -52,27 +53,28 @@ export class ReportUserPayResolver {
 
   @ResolveField()
   async usersPay(
-    @Parent() input: any,
+    @Parent() input: Report,
   ) {
     const allUsersData: any[] = [];
     for(const currentUser of input.usersPay){
-      const user = await this.userService.findById(currentUser.user);
+      const user = await this.userService.findById(`${currentUser.user}`);
       user.password = '';
       const discounts : any[] = [];
       const checks : any[] = [];
 
       for(const currentDiscount of currentUser.discounts){
-        const discount = await this.discountService.findById(currentDiscount)
+        const discount = await this.discountService.findById(`${currentDiscount}`)
         discounts.push(discount);
       }
       for(const currentCheck of currentUser.checks){
-        const check = await this.checkService.findById(currentCheck)
+        const check = await this.checkService.findById(`${currentCheck}`)
         checks.push(check);
       }
 
       allUsersData.push({
         user,
-        total: currentUser.total,
+        totalPay: currentUser.totalPay,
+        hoursWorked: currentUser.hoursWorked,
         discounts,
         checks
       })
