@@ -71,11 +71,14 @@ export class FilterPagination {
 }
 
 export class FilterShowUser {
+    pagination?: Nullable<FilterPagination>;
     role?: Nullable<Nullable<Role>[]>;
 }
 
-export class FilterUsers {
+export class ShowAllChecksFilter {
     pagination?: Nullable<FilterPagination>;
+    user?: Nullable<string>;
+    isActive?: Nullable<boolean>;
 }
 
 export interface Error {
@@ -153,7 +156,7 @@ export class Pagination {
 export abstract class IQuery {
     __typename?: 'IQuery';
 
-    abstract showUsers(filter?: Nullable<FilterUsers>, filterUser?: Nullable<FilterShowUser>): Nullable<ShowUsersResult> | Promise<Nullable<ShowUsersResult>>;
+    abstract showUsers(input: FilterShowUser): Nullable<ShowUsersResult> | Promise<Nullable<ShowUsersResult>>;
 
     abstract showUserById(id?: Nullable<string>): Nullable<ShowUserByIdResult> | Promise<Nullable<ShowUserByIdResult>>;
 
@@ -164,11 +167,18 @@ export abstract class IQuery {
     abstract login(email?: Nullable<string>, password?: Nullable<string>): Nullable<LoginResult> | Promise<Nullable<LoginResult>>;
 
     abstract showReportById(id?: Nullable<string>): Nullable<ShowReportByIdResult> | Promise<Nullable<ShowReportByIdResult>>;
+
+    abstract showAllChecks(input: ShowAllChecksFilter): Nullable<ShowAllChecksResult> | Promise<Nullable<ShowAllChecksResult>>;
 }
 
 export class ShowUsersSuccess {
     __typename?: 'ShowUsersSuccess';
     showUsersConnection?: Nullable<ShowUsersConnection>;
+}
+
+export class ShowAllChecksSuccess {
+    __typename?: 'ShowAllChecksSuccess';
+    showAllChecksConnection?: Nullable<ShowChecksConnection>;
 }
 
 export class ShowUserByIdSuccess {
@@ -245,6 +255,13 @@ export class ShowUsersConnection {
     edges?: Nullable<Nullable<User>[]>;
 }
 
+export class ShowChecksConnection {
+    __typename?: 'ShowChecksConnection';
+    pageInfo?: Nullable<Pagination>;
+    total?: Nullable<number>;
+    edges?: Nullable<Nullable<Check>[]>;
+}
+
 export type CreateNewUserResult = CreateNewUserSuccess | InternalError | InvalidInputError;
 export type CreateNewDiscountResult = CreateNewDiscountSuccess | InternalError | InvalidInputError;
 export type CreateManyDiscountsResult = CreateManyDiscountsSuccess | InternalError | InvalidInputError;
@@ -257,4 +274,5 @@ export type ShowDicountByIdResult = ShowDicountByIdSuccess | InvalidInputError |
 export type ShowCheckByIdResult = ShowCheckByIdSuccess | InvalidInputError | InternalError;
 export type LoginResult = LoginSuccess | InvalidInputError | InternalError;
 export type ShowReportByIdResult = ShowReportByIdSuccess | InvalidInputError | InternalError;
+export type ShowAllChecksResult = ShowAllChecksSuccess | InvalidInputError | InternalError;
 type Nullable<T> = T | null;

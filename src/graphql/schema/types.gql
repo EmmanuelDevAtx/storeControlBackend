@@ -48,3 +48,9 @@ type ShowUsersConnection{
     total: Int
     edges: [User]
 }
+
+type ShowChecksConnection{
+    pageInfo: Pagination
+    total: Int
+    edges: [Check]
+}
