@@ -28,12 +28,11 @@ export class UsersResolver {
 
   @Query('showUsers')
   async showUsers(
-    @Args('filter') input: FilterShowUser, 
-    @Args('filterUser') filterUser: FilterShowUser
+    @Args('input') input: FilterShowUser,
   ){
-    const filter : any =input  
-    const query: any = filterUser;
-    const users = await this.usersService.findAll(filter, query);
+    const query : any =input  
+    const filter: any = {role: input.role};
+    const users = await this.usersService.findAll(query, filter);
     return Object.assign(new ShowUsersSuccess(),{
       showUsersConnection:{
         pageInfo: {

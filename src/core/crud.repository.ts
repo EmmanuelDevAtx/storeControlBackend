@@ -25,6 +25,7 @@ export abstract class CrudRepository<T> {
       : findItems
       const newQuery = query;
       const pageSize = query.pagination?.limit || PAGE_SIZE_LIMIT;
+      console.log('Querie data', querieData)
       const results = await this.model
         .find(querieData)
         .limit(pageSize)
@@ -32,7 +33,7 @@ export abstract class CrudRepository<T> {
         .populate(newQuery.populate)
         .sort(newQuery.sort || { _id: 1 })
         .exec();
-      const total = await this.model.find(query).count().exec();
+      const total = await this.model.find(querieData).count().exec();
       const items = results.map((r) => (r as any).toObject());
 
       return {

@@ -39,6 +39,11 @@ input CreateNewDiscountInput{
     amount: Int!
 }
 
+input CreateNewDiscountReportInput{
+    description: String!
+    amount: Int!
+}
+
 input CreateReportInput{
     amountPerHour: Int
     usersPay: [UsersPayInput]
@@ -51,7 +56,7 @@ input Checksinput{
 input UsersPayInput{
     user:ID
     total: Int
-    discounts: [CreateNewDiscountInput]
+    discounts: [CreateNewDiscountReportInput]
     checks: [Checksinput]
 }
 

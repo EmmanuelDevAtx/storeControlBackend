@@ -27,6 +27,7 @@ export class ChecksService extends CrudService<Check>{
         user: input.user,
         startTime: item.startTime,
         endTime: item.endTime,
+        isActive: true
       })
     })
     

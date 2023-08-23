@@ -1,5 +1,5 @@
 type Query {
-    showUsers(filter: FilterUsers, filterUser: FilterShowUser): ShowUsersResult
+    showUsers(input: FilterShowUser!): ShowUsersResult
 
     showUserById(id: ID): ShowUserByIdResult
 
@@ -10,8 +10,9 @@ type Query {
     login(email: String, password: String ): LoginResult
 
     showReportById(id: ID): ShowReportByIdResult
-}
 
+    showAllChecks(input: ShowAllChecksFilter!): ShowAllChecksResult
+}
 
 union ShowUsersResult = ShowUsersSuccess | InvalidInputError | InternalError
 union ShowUserByIdResult = ShowUserByIdSuccess | InvalidInputError | InternalError
@@ -19,9 +20,14 @@ union ShowDicountByIdResult = ShowDicountByIdSuccess | InvalidInputError | Inter
 union ShowCheckByIdResult = ShowCheckByIdSuccess | InvalidInputError | InternalError
 union LoginResult = LoginSuccess | InvalidInputError | InternalError
 union ShowReportByIdResult = ShowReportByIdSuccess | InvalidInputError | InternalError
+union ShowAllChecksResult = ShowAllChecksSuccess | InvalidInputError | InternalError
 
 type ShowUsersSuccess {
     showUsersConnection: ShowUsersConnection
+}
+
+type ShowAllChecksSuccess{
+    showAllChecksConnection: ShowChecksConnection
 }
 
 type ShowUserByIdSuccess {
@@ -29,6 +35,7 @@ type ShowUserByIdSuccess {
 }
 
 input FilterShowUser{
+    pagination: FilterPagination
     role: [Role]
 }
 
@@ -40,14 +47,16 @@ type ShowCheckByIdSuccess{
     check: Check
 }
 
-input FilterUsers{
-    pagination: FilterPagination
-}
-
 type LoginSuccess{
     token: String
 }
 
 type ShowReportByIdSuccess{
     report: Report
+}
+
+input ShowAllChecksFilter {
+  pagination: FilterPagination
+  user: ID
+  isActive: Boolean
 }

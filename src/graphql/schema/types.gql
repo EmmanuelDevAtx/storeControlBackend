@@ -24,6 +24,7 @@ type Check{
     user: User
     startTime: Date
     endTime: Date
+    isActive: Boolean
 }
 
 type Report{
@@ -36,7 +37,8 @@ type Report{
 
 type UsersPayInformation{
     user: User
-    total: Int
+    totalPay: Int
+    hoursWorked: Int
     discounts: [Discount]
     checks: [Check]
 }
@@ -45,4 +47,10 @@ type ShowUsersConnection{
     pageInfo: Pagination
     total: Int
     edges: [User]
+}
+
+type ShowChecksConnection{
+    pageInfo: Pagination
+    total: Int
+    edges: [Check]
 }
