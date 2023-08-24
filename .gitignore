@@ -25,10 +25,11 @@
 *.user
 *.userosscache
 *.sln.docstates
-
+.Dockerfile
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
+.Di
 # Mono auto generated files
 mono_crash.*
 
