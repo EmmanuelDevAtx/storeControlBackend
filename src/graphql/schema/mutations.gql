@@ -21,6 +21,7 @@ union CreateReportResult =  CreateReportSuccess | InternalError | InvalidInputEr
 
 input CreateUserInput{
     name:String!
+    email:String
 }
 
 input CreateAdimInput{

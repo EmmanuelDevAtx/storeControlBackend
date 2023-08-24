@@ -15,18 +15,18 @@ export class UsersResolver {
       this.logger = new Logger('OneTimeCodeResolver');
     }
 
-  @Mutation('createNewUser')
+  @Mutation(()=>{})
   async createNewUser(
     @Args('user') user: CreateUserInput
   ){
-    const response = await this.usersService.create({...user, role: [Role.USER]})
+    const response = await this.usersService.create({...user,email: user.email ? user.email : `${user.name}@genericEmail.com`, role: [Role.USER]})
 
     return  Object.assign(new CreateNewUserSuccess(),{
       user: response
     });
   } 
 
-  @Query('showUsers')
+  @Query(()=>{})
   async showUsers(
     @Args('input') input: FilterShowUser,
   ){
@@ -46,7 +46,7 @@ export class UsersResolver {
     })
   }
 
-  @Query('showUserById')
+  @Query(()=>{})
   async showUserById(
     @Args('id') id:string  
     ){  

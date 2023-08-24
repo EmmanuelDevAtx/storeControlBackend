@@ -14,7 +14,7 @@ export class ReportsResolver {
   constructor(private readonly reportsService: ReportsService) {}
   
   @UseGuards( JwtAdminGuard )
-  @Mutation()
+  @Mutation(()=>{})
   async createReport(
     @Args('input') input: CreateReportInput,
     @CurrentUser() user: any
@@ -27,7 +27,7 @@ export class ReportsResolver {
   }
 
   @UseGuards( JwtAdminGuard )
-  @Query()
+  @Query(()=>{})
   async showReportById(
     @Args('id') id: string
   ){

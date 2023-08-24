@@ -17,6 +17,7 @@ type Discount{
     description: String
     amount: Int
     user: User
+    email: String
 }
 
 type Check{

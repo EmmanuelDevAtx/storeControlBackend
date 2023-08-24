@@ -16,6 +16,7 @@ export enum Role {
 
 export class CreateUserInput {
     name: string;
+    email?: Nullable<string>;
 }
 
 export class CreateAdimInput {
@@ -219,6 +220,7 @@ export class Discount {
     description?: Nullable<string>;
     amount?: Nullable<number>;
     user?: Nullable<User>;
+    email?: Nullable<string>;
 }
 
 export class Check {

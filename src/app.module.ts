@@ -11,6 +11,7 @@ import { DiscountsModule } from './discounts/discounts.module';
 import { AuthModule } from './auth/auth.module';
 import { ChecksModule } from './checks/checks.module';
 import { ReportsModule } from './reports/reports.module';
+import { upperDirectiveTransformer } from './core/directives/upper-case.directive';
 
 @Module({
   imports: [
@@ -21,6 +22,24 @@ import { ReportsModule } from './reports/reports.module';
       driver: ApolloDriver,
       playground:true,
       typePaths: ['./**/*.gql'],
+      introspection: true,
+      transformSchema: (schema) => upperDirectiveTransformer(schema, 'upper'),
+      installSubscriptionHandlers: true,
+      context: (context) => {
+        if (context?.extra?.request) {
+          return {
+            req: {
+              ...context?.extra?.request,
+              headers: {
+                ...context?.extra?.request?.headers,
+                ...context?.connectionParams?.headers,
+              },
+            },
+          };
+        }
+
+        return { req: context?.req };
+      },
     }),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],

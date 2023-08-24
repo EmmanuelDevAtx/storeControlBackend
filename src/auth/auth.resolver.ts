@@ -12,7 +12,7 @@ export class AuthResolver {
     private readonly usersService: UsersService
     ) {}
 
-  @Query('login')
+  @Query(()=>{})
   async login(
     @Args('email') email: string,
     @Args('password') password: string
@@ -25,7 +25,7 @@ export class AuthResolver {
   }
 
   @UseGuards( JwtAdminGuard )
-  @Mutation('createAdmin')
+  @Mutation(()=>{})
   async createAdmin(
     @Args('user') user: CreateAdimInput
   ){

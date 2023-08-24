@@ -19,7 +19,7 @@ export class AuthService {
 
         const respnosePassword = await this.verifyPassword(password, findUser.password);
 
-        if (respnosePassword == false) throw new Error('UnAuthorized')
+        if (respnosePassword == false) throw new Error('Error / email invalid')
 
         return this.generateJwtToken({email});
     }

@@ -17,7 +17,7 @@ export class DiscountsResolver {
     this.logger = new Logger('DiscountsResolver');
   }
 
-  @Mutation('createNewDiscount')
+  @Mutation(()=>{})
   async createNewDiscount(
     @Args('input') input: CreateNewDiscountInput
     ) {
@@ -28,7 +28,7 @@ export class DiscountsResolver {
     })
   }
 
-  @Mutation('createManyDiscounts')
+  @Mutation(()=>{})
   async createManyDiscounts(
     @Args('input') input:CreateManyDiscountsInput
   ){
@@ -39,7 +39,7 @@ export class DiscountsResolver {
 
   }
 
-  @Query('showDicountById')
+  @Query(()=>{})
   async showDicountById(
     @Args('id') id:string
   ){

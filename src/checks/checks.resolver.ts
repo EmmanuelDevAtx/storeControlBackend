@@ -10,7 +10,7 @@ import { UseGuards } from '@nestjs/common';
 export class ChecksResolver {
   constructor(private readonly checksService: ChecksService) {}
 
-  @Mutation('createManyChecks')
+  @Mutation(()=>{})
   async createManyChecks(
     @Args('input') input: CreateManyChecksInput
   ){
@@ -24,7 +24,7 @@ export class ChecksResolver {
     }
   }
 
-  @Query('showCheckById')
+  @Query(()=>{})
   async showCheckById(
     @Args('id') id: string
   ){
@@ -35,7 +35,7 @@ export class ChecksResolver {
     })
   }
 
-  @Query('showAllChecks')
+  @Query(()=>{})
   async showAllChecks(
     @Args('input') input: ShowAllChecksFilter
   ){

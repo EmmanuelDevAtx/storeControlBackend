@@ -12,10 +12,10 @@ export class User {
     @Prop({type: [String]})
     role: Role[]
 
-    @Prop({ type: String, unique:true, lowercase:true })
+    @Prop({ type: String, isRequired: false })
     email?: string
 
-    @Prop({ type: String })
+    @Prop({ type: String, isRequired: false })
     password?: string
 }
 export const UsersSchema = SchemaFactory.createForClass(User);

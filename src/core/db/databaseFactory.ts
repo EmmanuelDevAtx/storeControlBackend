@@ -1,5 +1,5 @@
 export const databaseFactory = async () => ({
-  uri: 'mongodb://mongodb:27017',
+  uri: process.env.MONGO_URL,
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
