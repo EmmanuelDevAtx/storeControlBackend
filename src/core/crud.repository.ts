@@ -19,7 +19,6 @@ export abstract class CrudRepository<T> {
 
   async findAll(query?: FindAllQuery, findItems?:any): Promise<PaginatedEntities<T>> {
     try {
-      
       const querieData = query.pagination?.cursor
       ? {...findItems,  _id: { $gt: query.pagination.cursor } }
       : findItems
