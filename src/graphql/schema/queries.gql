@@ -11,7 +11,7 @@ type Query {
 
     showReportById(id: ID): ShowReportByIdResult
 
-    showAllChecks(input: ShowAllChecksFilter!): ShowAllChecksResult
+    showAllChecks(input: ShowAllChecksFilter!, filter:ShowAddChecksFilterInput): ShowAllChecksResult
 }
 
 union ShowUsersResult = ShowUsersSuccess | InvalidInputError | InternalError
@@ -59,4 +59,9 @@ input ShowAllChecksFilter {
   pagination: FilterPagination
   user: ID
   isActive: Boolean
+}
+
+input ShowAddChecksFilterInput{
+    user: ID
+    isActive: Boolean
 }

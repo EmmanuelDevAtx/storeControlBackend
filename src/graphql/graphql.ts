@@ -82,6 +82,11 @@ export class ShowAllChecksFilter {
     isActive?: Nullable<boolean>;
 }
 
+export class ShowAddChecksFilterInput {
+    user?: Nullable<string>;
+    isActive?: Nullable<boolean>;
+}
+
 export interface Error {
     message: string;
 }
@@ -169,7 +174,7 @@ export abstract class IQuery {
 
     abstract showReportById(id?: Nullable<string>): Nullable<ShowReportByIdResult> | Promise<Nullable<ShowReportByIdResult>>;
 
-    abstract showAllChecks(input: ShowAllChecksFilter): Nullable<ShowAllChecksResult> | Promise<Nullable<ShowAllChecksResult>>;
+    abstract showAllChecks(input: ShowAllChecksFilter, filter?: Nullable<ShowAddChecksFilterInput>): Nullable<ShowAllChecksResult> | Promise<Nullable<ShowAllChecksResult>>;
 }
 
 export class ShowUsersSuccess {

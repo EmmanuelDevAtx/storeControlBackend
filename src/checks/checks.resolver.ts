@@ -1,6 +1,6 @@
 import { Resolver, Query, Mutation, Args, ResolveField } from '@nestjs/graphql';
 import { ChecksService } from './checks.service';
-import { CreateManyChecksInput, CreateManyChecksSuccess, InternalError, InvalidInputError, ShowAllChecksFilter, ShowAllChecksSuccess, ShowCheckByIdSuccess } from 'src/graphql/graphql';
+import { CreateManyChecksInput, CreateManyChecksSuccess, InternalError, InvalidInputError, ShowAddChecksFilterInput, ShowAllChecksFilter, ShowAllChecksSuccess, ShowCheckByIdSuccess } from 'src/graphql/graphql';
 import { JwtAdminGuard } from 'src/auth/guards/jwt-auth-gurad';
 import { UseGuards } from '@nestjs/common';
 
@@ -37,10 +37,10 @@ export class ChecksResolver {
 
   @Query(()=>{})
   async showAllChecks(
-    @Args('input') input: ShowAllChecksFilter
+    @Args('input') input: ShowAllChecksFilter,
+    @Args('filter') filter : ShowAddChecksFilterInput
   ){
     let query : any = input
-    const filter : any = {user: input.user, isActive: input.isActive}
     const allChecks = await this.checksService.findAll(query, filter);
     return Object.assign(new ShowAllChecksSuccess(), {
       showAllChecksConnection:{
