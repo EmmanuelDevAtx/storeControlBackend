@@ -31,7 +31,7 @@ export class ReportsResolver {
   async showReportById(
     @Args('id') id: string
   ){
-    const report = await this.reportsService.findById(id, { populateFields : 'owner usersPay.user usersPay.discounts'});
+    const report = await this.reportsService.findById(id, { populateFields : 'owner,usersPay.user,usersPay.discounts'});
     return Object.assign(new ShowReportByIdSuccess(),{
       report
     })
