@@ -41,6 +41,7 @@ export class ChecksResolver {
     @Args('filter') filter : ShowAddChecksFilterInput
   ){
     let query : any = input
+    query.populate = ['user']
     const allChecks = await this.checksService.findAll(query, filter);
     return Object.assign(new ShowAllChecksSuccess(), {
       showAllChecksConnection:{
