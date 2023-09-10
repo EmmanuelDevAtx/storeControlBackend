@@ -12,6 +12,8 @@ type Query {
     showReportById(id: ID): ShowReportByIdResult
 
     showAllChecks(input: ShowAllChecksFilter!, filter:ShowAddChecksFilterInput): ShowAllChecksResult
+
+    showAllReports(input: ShowAllReportsFilter): ShowAllReportsResult
 }
 
 union ShowUsersResult = ShowUsersSuccess | InvalidInputError | InternalError
@@ -21,6 +23,7 @@ union ShowCheckByIdResult = ShowCheckByIdSuccess | InvalidInputError | InternalE
 union LoginResult = LoginSuccess | InvalidInputError | InternalError
 union ShowReportByIdResult = ShowReportByIdSuccess | InvalidInputError | InternalError
 union ShowAllChecksResult = ShowAllChecksSuccess | InvalidInputError | InternalError
+union ShowAllReportsResult = ShowAllReportsSuccess | InvalidInputError | InternalError
 
 type ShowUsersSuccess {
     showUsersConnection: ShowUsersConnection
@@ -28,6 +31,10 @@ type ShowUsersSuccess {
 
 type ShowAllChecksSuccess{
     showAllChecksConnection: ShowChecksConnection
+}
+
+type ShowAllReportsSuccess{
+    showAllReportsConnection: ShowAllReportsConnection
 }
 
 type ShowUserByIdSuccess {
@@ -64,4 +71,9 @@ input ShowAllChecksFilter {
 input ShowAddChecksFilterInput{
     user: ID
     isActive: Boolean
+}
+
+input ShowAllReportsFilter{
+    pagination: FilterPagination
+    user: ID
 }
