@@ -17,7 +17,6 @@ type Discount{
     description: String
     amount: Int
     user: User
-    email: String
 }
 
 type Check{
@@ -54,4 +53,10 @@ type ShowChecksConnection{
     pageInfo: Pagination
     total: Int
     edges: [Check]
+}
+
+type ShowAllReportsConnection{
+    pageInfo: Pagination
+    total: Int
+    edges: [Report]
 }
